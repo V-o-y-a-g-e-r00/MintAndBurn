@@ -13,8 +13,12 @@ export const useStyles = makeStyles({
 
     mintandburnForm: {
         '--base-font-color': '#FFFFFF',
+        '--accent-font-color-1':'#FFC086',
+        '--accent-font-color-2': '#FFA723',
+        '--base-font-family':'Montserrat',
         '--form-header-font-size': '2.1875rem',
         '--form-content-font-size': '1.25rem',
+        '--input-border-color': '#DCB9FF',
     
         width: '100%',
         height: '46.625rem',
@@ -22,10 +26,10 @@ export const useStyles = makeStyles({
         'border-radius': '2.5rem',
         'color': 'var(--base-font-color)',
         'font-size': 'var(--form-content-font-size)',
-
         padding: '3.125rem',
         display: 'flex',
-        'flex-direction': 'column', 
+        'flex-direction': 'column',
+        'font-family':'var(--base-font-family)',
         
 
         '& .header': {
@@ -58,6 +62,7 @@ export const useStyles = makeStyles({
                 'margin':'auto',
                 'display': 'flex',
                 'justify-content': 'end',
+                'color': 'var(--accent-font-color-1)',
             },
             '& .input-container':{
                 'position': 'relative',
@@ -66,13 +71,16 @@ export const useStyles = makeStyles({
                 '& input':{
                     '-webkit-appearance': 'none',
                     'outline': 'none',
-                    'border': 'none',
+                    'border': '0.125rem solid var(--input-border-color)',
+                    'background': 'transparent',
                     'min-width': 'unset',
                     'width': '100%',
                     'padding': '1.4375rem 0.9375rem',
 
                     'border-radius': '0.9375rem',
+                    'font-family':'var(--base-font-family)',
                     'font-size': 'var(--form-content-font-size)',
+                    'color': 'var(--base-font-color)',
                     
                 },
                 '& .max-amount-container':{
@@ -83,6 +91,7 @@ export const useStyles = makeStyles({
 
                     'display': 'flex',
                     'align-items': 'center',
+                    'color': 'var(--accent-font-color-2)',
                 }
             }
         },

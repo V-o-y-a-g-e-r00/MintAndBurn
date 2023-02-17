@@ -1,5 +1,7 @@
 import { useStyles } from './styles';
 
+import MintandburnButton from '../mintandburn-button'
+
 const MintandburnForm = () => {
     const classes = useStyles();
     return (
@@ -21,7 +23,7 @@ const MintandburnForm = () => {
                         Balance: 0
                     </div>
                     <div className='input-container'>
-                        <input type="text" />
+                        <input type="text" placeholder='Enter'/>
                         <div className='max-amount-container'>
                             Max
                         </div>
@@ -62,7 +64,12 @@ const MintandburnForm = () => {
 
 
                 </div>
-                <div className='button-component'>Mint</div>
+                <div className='button-component'>
+
+                <MintandburnButton onClick={null} name='Mint' />
+
+
+                </div>
             </div>
         </section>
     )
