@@ -84,28 +84,6 @@ const MintForm = () => {
 
                 <MintandburnButton onClick={null} name='Mint' />
 
-
-
-
-                <StyledEngineProvider injectFirst>
-      <ThemeProvider theme={CustomTheme}>
-        <BoldVariant />
-      </ThemeProvider>
-      <div style={{ marginTop: 24 }}>
-        <a
-          target="_blank"
-          href="https://smartdevpreneur.com/mui-custom-button-example/"
-        >
-          Read all about MUI Buttons here
-        </a>
-      </div>
-    </StyledEngineProvider>,
-
-
-
-
-
-
                 </Box>
             </Box>
         </section>
