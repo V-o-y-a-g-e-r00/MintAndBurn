@@ -1,11 +1,14 @@
-import Button from '@mui/material/Button';
 import PropTypes from 'prop-types';
+import Box from '@mui/material/Box';
+import styles from './styles';
 
 const MintandburnButton = ({ name, onClick, variant, disabled }) => {
   return (
-    <Button disabled={disabled} onClick={onClick} variant={variant} color="primary" id={`snet-button-${name}`}>
-      {name}
-    </Button>
+    <Box sx={styles.button}>
+      <button disabled={disabled} onClick={onClick} variant={variant} color="primary" id={`snet-button-${name}`}>
+        {name}
+      </button>
+    </Box>
   );
 };
 

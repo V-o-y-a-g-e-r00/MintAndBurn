@@ -6,7 +6,7 @@ import SnetSnackbar from '../../components/ui/snet-snackbar';
 import { useStyles } from './styles';
 import ColorCodes from '../../assets/theme/colorCodes';
 
-import MintandburnForm from '../../components/ui/mintandburn-form';
+import MintForm from '../../components/mint-form';
 
 const Voting = () => {
   const [error, setError] = useState({ showError: false, message: '' });
@@ -32,7 +32,7 @@ const Voting = () => {
             Voting here
           </Typography>
         </Box> */}
-        <MintandburnForm/>
+        <MintForm/>
       </GeneralLayout>
     </>
   );
