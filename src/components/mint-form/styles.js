@@ -15,10 +15,12 @@ export const useStyles = makeStyles({
 
     mintForm: {
         '--base-font-color': '#FFFFFF',
+        '--base-font-weight': '600',
         '--accent-font-color-1':'#FFC086',
         '--accent-font-color-2': '#FFA723',
         '--base-font-family':'Montserrat',
         '--form-header-font-size': '2.1875rem',
+        '--form-header-font-weight': '700',
         '--form-content-font-size': '1.25rem',
         '--input-border-color': '#DCB9FF',
 
@@ -31,7 +33,9 @@ export const useStyles = makeStyles({
         padding: '3.125rem',
         display: 'flex',
         flexDirection: 'column',
+        justifyContent: 'space-between',
         fontFamily:'var(--base-font-family)',
+        fontWeight: 'var(--base-font-weight)',
 
 
 
@@ -43,7 +47,7 @@ export const useStyles = makeStyles({
         '& .header': {
             // color: 'var(--color)',
             width: '100%',
-            marginBottom: '2.3125rem',
+            // marginBottom: '2.3125rem',
 
             display: 'flex',
             alignItems: 'center',
@@ -55,33 +59,19 @@ export const useStyles = makeStyles({
 
                 // border: '1px solid red',
                 flexShrink: '0',
-
-                '& .dummy-border': {
-                    width: '100%',
-                    height: '100%',
-                    padding:'0.1875rem',
-                    borderRadius: '1.25rem',
-                    background: 'linear-gradient(144.85deg, rgba(220, 185, 255, 1) 6.99%, rgba(201, 148, 255, 0.47) 93.01%), linear-gradient(90deg, rgba(0,0,0,0.5) 7%, rgba(0,0,0,1)) 93%',
-                    // background: 'red',
-                    '& .dummy-inner':{
-                        width: '100%',
-                        height: '100%',
-                        borderRadius: '1rem',
-                        background: 'linear-gradient(144.85deg, #ECA2FF 6.99%, rgba(136, 43, 254, 0.2) 93.01%)',
-                    }
-                },
             },
             '& .gap':{
                 flex:'0 1 1.5rem',
             },
             '& .text-holder':{
                 fontSize:'var(--form-header-font-size)',
+                fontWeight: 'var(--form-header-font-weight)',
             }
         },
         '& .amount-container':{
-            marginBottom: '2.5rem',
+            // marginBottom: '2.5rem',
 
-            '& .right-size-container':{
+            '& .right-side-container':{
                 margin:'auto',
                 display: 'flex',
                 justifyContent: 'end',
@@ -103,6 +93,7 @@ export const useStyles = makeStyles({
                     borderRadius: '0.9375rem',
                     fontFamily:'var(--base-font-family)',
                     fontSize: 'var(--form-content-font-size)',
+                    fontWeight: 'var(--base-font-weight)',
                     color: 'var(--base-font-color)',
 
                     '&::placeholder':{
@@ -123,7 +114,7 @@ export const useStyles = makeStyles({
             }
         },
         '& .details-list':{
-            'margin-bottom': '3.75rem',
+            // 'margin-bottom': '1.75rem',
 
 
             '& .details-item':{

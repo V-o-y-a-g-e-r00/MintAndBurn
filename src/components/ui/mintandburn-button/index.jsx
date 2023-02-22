@@ -4,8 +4,8 @@ import styles from './styles';
 
 const MintandburnButton = ({ name, onClick, variant, disabled }) => {
   return (
-    <Box sx={styles.button}>
-      <button disabled={disabled} onClick={onClick} variant={variant} color="primary" id={`snet-button-${name}`}>
+    <Box sx={styles.base}>
+      <button disabled={disabled} onClick={onClick}>
         {name}
       </button>
     </Box>
