@@ -36,6 +36,10 @@ export const useStyles = makeStyles({
     marginBottom: 20
   },
   backdrop: {
-    zIndex: 1
+    animationDelay: '1s',
+    width: '100vw',
+    height: '100vh',
+    pointerEvents: 'none !important',
+    zIndex: 2099
   }
 });

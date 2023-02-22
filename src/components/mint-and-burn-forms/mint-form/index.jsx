@@ -1,13 +1,13 @@
 import Box from '@mui/material/Box';
 import { useStyles } from './styles';
 
-import MintandburnButton from '../ui/mintandburn-button';
-import AmountInput from './amount-input';
+import MintandburnButton from '../../ui/mintandburn-button';
+import AmountInput from '../amount-input';
 
 const MintForm = () => {
     const classes = useStyles();
     return (
-        <section className={classes.testSection}>
+        // <section className={classes.testSection}>
             <Box className={classes.mintForm}>
                 <Box className="header">
                     <Box className="icon-holder">
@@ -63,11 +63,11 @@ const MintForm = () => {
                 <Box className='button-component'>
 
                 <MintandburnButton onClick={null} name='Mint' variant='mint' disabled={false} />
-                <MintandburnButton onClick={null} name='Mint' variant='burn' disabled={true} />
+                {/* <MintandburnButton onClick={null} name='Mint' variant='burn' disabled={true} /> */}
 
                 </Box>
             </Box>
-        </section>
+        // </section>
     )
 }
 export default MintForm;

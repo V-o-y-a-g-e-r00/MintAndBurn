@@ -4,7 +4,7 @@ import Paths from '../../../../router/paths';
 import VotingLogo from '../../../../assets/images/logo/voting_logo.svg';
 import useNavbarStyles from '../../style';
 
-const BridgeLogo = () => {
+const VotingLogoBlock = () => {
   const classes = useNavbarStyles();
   const navigate = useNavigate();
 
@@ -15,8 +15,17 @@ const BridgeLogo = () => {
   return (
     <Box onClick={onClickLogo} className={`${classes.flex} ${classes.cursor}`}>
       <img src={VotingLogo} alt="SingNet Logo" className={classes.logo} />
+      <span
+        style={{
+          fontSize: '1.25rem',
+          fontWeight: 700,
+          lineHeight: '1rem'
+        }}
+      >
+        VOTING
+      </span>
     </Box>
   );
 };
 
-export default BridgeLogo;
+export default VotingLogoBlock;

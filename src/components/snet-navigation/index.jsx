@@ -12,23 +12,31 @@ const SnetNavigation = () => {
   };
 
   const WalletModal = () => {
-    return isWalletConnecting ?
-      <SnetConnectWallets
-        isDialogOpen={isModalVisible}
-        onDialogClose={toggleIsModalVisible}
-        onWalletConnect={setIsWalletConnecting}
-      /> :
-      <SnetDisplayWallets
-        isDialogOpen={isModalVisible}
-        onDialogClose={toggleIsModalVisible}
-        onWalletConnect={setIsWalletConnecting}
-      />;
+    if (isWalletConnecting) {
+      return (
+        <SnetConnectWallets
+          isDialogOpen={isModalVisible}
+          onDialogClose={toggleIsModalVisible}
+          onWalletConnect={setIsWalletConnecting}
+        />
+      );
+    } else {
+      return (
+        <SnetDisplayWallets
+          isDialogOpen={isModalVisible}
+          onDialogClose={toggleIsModalVisible}
+          onWalletConnect={setIsWalletConnecting}
+        />
+      )
+    }
   }
 
   return (
     <>
-      <WalletModal />
-      <NavigationBar openModal={toggleIsModalVisible} onWalletConnect={setIsWalletConnecting}/>
+      <WalletModal/>
+      <NavigationBar 
+        openModal={toggleIsModalVisible} 
+        onWalletConnect={setIsWalletConnecting}/>
     </>
   );
 };

@@ -1,6 +1,6 @@
 import { makeStyles } from '@mui/styles';
 
-import mintFormBackground from '../../assets/images/background/mintForm_background.png';
+import mintFormBackground from '../../../assets/images/background/mintForm_background.png';
 
 export const useStyles = makeStyles({
     testSection: {
@@ -26,6 +26,8 @@ export const useStyles = makeStyles({
 
         width: '100%',
         height: '46.625rem',
+        flex: '0 1 49%',
+
         background: 'blue',
         borderRadius: '2.5rem',
         color: 'var(--base-font-color)',

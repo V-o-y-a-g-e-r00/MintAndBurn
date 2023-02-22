@@ -1,29 +1,27 @@
-import { useState } from 'react';
-import SnetDialog from '../snet-dialog';
-import SnetSnackbar from '../ui/snet-snackbar';
-import SnetTypography from '../snet-typography';
-import SnetConnectOptions from '../snet-connect-options';
 import { blockchains } from '../../data/constants/constants'
+import SnetDialog from '../snet-dialog';
+import SnetTypography from '../snet-typography';
+import ConnectOptions from './connect-options';
 import propTypes from 'prop-types';
+import { Backdrop, CircularProgress } from '@mui/material';
+import {useStyles} from './styles';
+import { useSelector } from 'react-redux';
 
 const SnetConnectWallets = ({ isDialogOpen, onDialogClose, onWalletConnect }) => {
 
-  const [error, setError] = useState({ showError: false, message: '' });
-  const closeError = () => {
-    setError({ showError: false, message: '' });
-  };
+  const isLoading = useSelector(state => state.application.isLoading);
+  const classes = useStyles();
 
   const WalletConnectorByBlockchain = () => {
     return blockchains.map((blockchain) => {
       return (
-        <SnetConnectOptions blockchain={blockchain} key={blockchain.name} onWalletConnect={onWalletConnect}/>
+        <ConnectOptions blockchain={blockchain} key={blockchain.name} onWalletConnect={onWalletConnect}/>
       )
     })
   }
 
   return (
     <>
-      <SnetSnackbar open={error.showError} message={error.message} onClose={closeError} />
       <SnetDialog title="Connect Your Wallets" onDialogClose={onDialogClose} isDialogOpen={isDialogOpen}>
         <WalletConnectorByBlockchain />
         <SnetTypography />

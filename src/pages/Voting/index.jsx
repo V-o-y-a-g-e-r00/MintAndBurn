@@ -1,16 +1,33 @@
 import { Helmet } from 'react-helmet';
 import { Backdrop, Box, CircularProgress, Typography } from '@mui/material';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import GeneralLayout from '../../layouts/GeneralLayout';
 import SnetSnackbar from '../../components/ui/snet-snackbar';
 import { useStyles } from './styles';
 import ColorCodes from '../../assets/theme/colorCodes';
+import { useDispatch, useSelector } from 'react-redux';
+import { getProposals, getPools} from "../../store/slices/event/eventActions";
 
-import MintForm from '../../components/mint-form';
+import MintAndBurnForms from '../../components/mint-and-burn-forms/'
 
 const Voting = () => {
+  console.log("COMPONENT VOTING PAGE")
+  const isLoading = useSelector(state => state.application.isLoading);
   const [error, setError] = useState({ showError: false, message: '' });
-  const [isLoading] = useState(false);
+  const dispatch = useDispatch();
+  const { proposals } = useSelector((state) => state.event);
+
+  useEffect(() => {
+    if (!proposals.length) {
+      dispatch(getProposals());
+    }
+  });
+
+  useEffect(() => {
+    if (!proposals.length) {
+      dispatch(getPools());
+    }
+  });
   const closeError = () => {
     setError({ showError: false, message: '' });
   };
@@ -22,17 +39,13 @@ const Voting = () => {
       <Backdrop className={classes.backdrop} open={isLoading}>
         <CircularProgress color="white" />
       </Backdrop>
-      <SnetSnackbar open={error.showError} message={error.message} onClose={closeError} />
       <Helmet>
         <title>SingularityNet Voting</title>
       </Helmet>
       <GeneralLayout>
-        {/* <Box display="flex" justifyContent="center" alignItems="center">
-          <Typography variant="h3" color={ColorCodes.text}>
-            Voting here
-          </Typography>
-        </Box> */}
-        <MintForm/>
+        <Box display="flex" justifyContent="center" alignItems="center" width="100%">
+          <MintAndBurnForms></MintAndBurnForms>
+        </Box>
       </GeneralLayout>
     </>
   );

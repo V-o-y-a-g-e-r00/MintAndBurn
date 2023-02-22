@@ -5,12 +5,14 @@ import BackgroundImage from '../assets/images/background/BackgroundImage.png';
 export const useStyles = makeStyles({
   mainContainer: {
     padding: '24px 0 186px',
-    backgroundImage: `url(${BackgroundImage})`,
+    // backgroundImage: `url(${BackgroundImage})`,
     backgroundSize: 'cover',
-    minHeight: '70vh'
+    minHeight: '70vh',
+
+    background: 'linear-gradient(153.37deg, #2C2352 12.94%, #100E13 91.8%)',
   },
   wrapper: {
-    maxWidth: 1063,
+    maxWidth: 1280,
     margin: '0 auto',
     '@media(max-width: 1200px)': { padding: '0 20px' }
   }

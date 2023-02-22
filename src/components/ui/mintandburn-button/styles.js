@@ -19,8 +19,8 @@ base: {
 variants: {
     mint: {
         '& > button': {
-            background: 'linear-gradient(157.81deg, #7B90DC 5.82%, rgba(206, 67, 255, 0.86) 95.02%)',
-            boxShadow: '0px 8px 11px 1px rgba(206, 74, 218, 0.28)',
+            background: 'linear-gradient(178deg, #7B90DC 5.82%, rgba(206, 67, 255, 0.86) 95.02%)',
+            boxShadow: '0px 8px 11px 1px rgba(206, 74, 218, 0.15)',
             '&:hover:not(:disabled), &:focus-visible':{
                 boxShadow: '0px 11px 26px 3px rgba(251, 35, 255, 0.25)',
                 outline: '2px solid #AE7DED',

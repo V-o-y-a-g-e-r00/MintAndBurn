@@ -1,8 +1,8 @@
-import propTypes from 'prop-types';
+import { useStyles } from './styles';
 import WhiteSnetLogo from '../../../assets/images/logo/WhiteLogo.svg';
 import FooterLinks from './FooterLinks';
 import FooterLink from '../FooterLink';
-import { useStyles } from './styles';
+import propTypes from 'prop-types';
 
 const PrimaryFooter = ({ leftData, mainData }) => {
   const classes = useStyles();

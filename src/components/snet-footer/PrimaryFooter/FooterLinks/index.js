@@ -1,6 +1,6 @@
-import propTypes from 'prop-types';
 import FooterLink from '../../FooterLink';
 import { useStyles } from './styles';
+import propTypes from 'prop-types';
 
 const FooterLinks = ({ data }) => {
   const classes = useStyles();

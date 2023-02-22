@@ -1,12 +1,18 @@
 const style = {
+    isLoading: {
+      PointerEvents: 'none !important'
+    },
     box: { 
       width: '100%',
-      display: 'inline-block',
-      margin:'50px'
+      display: 'inline-block'
     },
-    flex: {
-      display: 'flex',
-      alignItems: 'center'
+    customBox: {      
+      borderTop:'1px solid rgba(0, 0, 0, 0.12)',
+      paddingTop: '25px',
+      '&:first-of-type': {
+        borderTop: 'none',
+        paddingTop: '0',
+      }
     },
     grid: {
       display: 'flex',
@@ -20,6 +26,30 @@ const style = {
         letterSpacing: 1.25,
         lineHeight: '16px',
         '&:hover': { borderWidth: 2 }
+      },
+      '& ul': {
+        borderBottom: '1px solid rgba(0, 0, 0, 0.12)',
+      },
+      '& li': {
+        width: 72,
+        height: 72,
+        padding: 0,
+        border: '1px solid #D6D6D6',
+        borderRadius: '6px',
+        marginRight: '32px',
+        display: 'flex',
+        justifyContent: 'center',
+        backgroundColor: '#FFF',
+        boxShadow: '0 0 8px 0 rgba(173,180,180,0.24)',
+        cursor: 'pointer',
+        '&:last-of-type': { 
+          marginRight: 0 
+        },
+        '& img': { width: '70%' },
+        '&:hover': {
+          border: '1px solid #4F13E0',
+          backgroundColor: 'rgba(79,19,224,0.1)'
+        }
       }
     },
     blockchain: {
@@ -32,7 +62,12 @@ const style = {
         fontSize: 16
       }
     },
-    blockchainInfo: { display: 'inline', lineHeight: 0.5, fontSize: '14px', textAlign: 'left' },
+    blockchainInfo: {
+      display: 'inline',
+      lineHeight: 0.5,
+      fontSize: '14px',
+      textAlign: 'left' 
+    },
     icon: {
       height: 20,
       color: '#212121'
@@ -75,7 +110,9 @@ const style = {
         backgroundColor: '#FFF',
         boxShadow: '0 0 8px 0 rgba(173,180,180,0.24)',
         cursor: 'pointer',
-        '&:last-of-type': { marginRight: 0 },
+        '&:last-of-type': { 
+          marginRight: 0 
+        },
         '& img': { width: '70%' },
         '&:hover': {
           border: '1px solid #4F13E0',

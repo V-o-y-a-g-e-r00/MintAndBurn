@@ -3,11 +3,11 @@ import ColorCodes from '../../assets/theme/colorCodes';
 const snetDialogStyles = {
   dialogTitle: {
     m: 0,
-    padding: '16px 24px !important',
     color: ColorCodes.blue,
     fontSize: 18,
     fontWeight: '600',
-    lineHeight: '24px'
+    lineHeight: '24px',
+    padding: '16px 30px !important',
   },
   iconButton: {
     position: 'absolute',
@@ -17,7 +17,9 @@ const snetDialogStyles = {
     '& svg': { fontSize: 24 }
   },
   dailogContent: {
-    padding: '0 !important'
+    maxWidth: '800px',
+    minWidth: '600px',
+    padding: '16px 24px !important'    
   }
 };
 

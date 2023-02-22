@@ -1,48 +1,45 @@
 import { useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch} from 'react-redux';
 import Snackbar from '@mui/material/Snackbar';
-import propTypes from 'prop-types';
 import { Button } from '@mui/material';
 import { isNil } from 'lodash';
+import { closeError } from '../../../store/slices/errors/errorSlice';
+import propTypes from 'prop-types';
+import { useEffect, useState } from 'react';
 
-const SnetSnackbar = ({ open, onClose, message, redirectTo }) => {
+const SnetSnackbar = ({ redirectTo }) => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  const handleRedirect = () => {
-    navigate(redirectTo);
-  };
+  const message = useSelector(state => state.errors.message);
+  const isOpenSnackbar = useSelector(state => state.errors.showError);
 
   const formatMessage = () => {
-    return isNil(message) ? '' : message.message || JSON.stringify(message);
+    console.log(message);
+    return isNil(message) ? '' : JSON.stringify(message);
   };
+
+
+  const closeSnetSnackbar = () => {
+    dispatch(closeError());
+  }
 
   return (
     <Snackbar
-      action={
-        redirectTo ? (
-          <Button color="warning" size="small" onClick={handleRedirect}>
-            View
-          </Button>
-        ) : null
-      }
-      anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
-      open={open}
+      anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+      open={isOpenSnackbar}
       autoHideDuration={6000}
-      onClose={onClose}
+      onClick={closeSnetSnackbar}
+      onClose={closeSnetSnackbar}
       message={formatMessage()}
     />
   );
 };
 
 SnetSnackbar.propTypes = {
-  open: propTypes.bool,
-  onClose: propTypes.func.isRequired,
-  message: propTypes.string,
   redirectTo: propTypes.string
 };
 
 SnetSnackbar.defaultProps = {
-  open: false,
-  message: '',
   redirectTo: null
 };
 

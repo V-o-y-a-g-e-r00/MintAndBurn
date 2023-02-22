@@ -12,7 +12,7 @@ const NavigationBar = ({ openModal, onWalletConnect }) => {
     <AppBar position="static" color="white" sx={{ padding: 2 }} className={classes.header}>
       <Box className={classes.items}>
         <Box display="flex" alignItems="center" justifyContent="space-between">
-          <VotingLogo openModal={openModal} />
+          <VotingLogo/>
         </Box>
         <Wallets openModal={openModal} onWalletConnect={onWalletConnect}/>
       </Box>

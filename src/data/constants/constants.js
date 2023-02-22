@@ -1,11 +1,18 @@
 import NamiWallet from '../../assets/images/walletsIcons/nami_logo.svg';
 import EternalWallet from '../../assets/images/walletsIcons//eternal_logo.png';
 import GeroWallet from '../../assets/images/walletsIcons/gero_logo.svg';
-import MetamaskAndWalletConnect from '../../assets/images/walletsIcons/metamaskAndWalletConnect_logo.png';
+import Metamask from '../../assets/images/walletsIcons/metamask_logo.png';
 import FlintWallet from '../../assets/images/walletsIcons/flintWallet_logo.png';
 import CWallet from '../../assets/images/walletsIcons/cardWallet_logo.png';
 import EthereumLogo from '../../assets/images/blockchainIcons/ethereum.png'
 import CardanoLogo from '../../assets/images/blockchainIcons/cardano.png'
+
+export const progress = {
+    IDLE: 'IDLE',
+    PROCESSING: 'PROCESSING',
+    COMPLETE: 'COMPLETE',
+    ERROR: 'ERROR'
+};
 
 export const availableBlockchains = {
     ETHEREUM: "Ethereum",
@@ -25,24 +32,24 @@ export const blockchains = [
 
 export const supportedWallets = {
     ETHEREUM: [
-        // {
-        //   wallet: 'Wallet Connect',
-        //   identifier: 'walletconnect',
-        //   logo: WalletConnect,
-        //   site: 'https://walletconnect.com'
-        // },
-        // {
-        //   wallet: 'Metamask',
-        //   identifier: 'metamask',
-        //   logo: Metamask,
-        //   site: 'https://metamask.io/'
-        // }
         {
-            wallet: 'Metamask or WalletConnect ',
-            identifier: 'metamaskAndWalletConnect',
-            logo: MetamaskAndWalletConnect,
-            site: 'https://metamask.io/'
+          wallet: 'Metamask',
+          identifier: 'metamask',
+          logo: Metamask,
+          site: 'https://metamask.io/'
         }
+        // ,{
+            //   wallet: 'Wallet Connect',
+            //   identifier: 'walletconnect',
+            //   logo: Metamask,
+            //   site: 'https://walletconnect.com'
+            // },
+        // {
+        //     wallet: 'Metamask or WalletConnect ',
+        //     identifier: 'metamaskAndWalletConnect',
+        //     logo: MetamaskAndWalletConnect,
+        //     site: 'https://metamask.io/'
+        // }
     ],
     CARDANO: [
         {
