@@ -62,8 +62,8 @@ const MintForm = () => {
                 </Box>
                 <Box className='button-component'>
 
-                <MintandburnButton onClick={null} name='Mint' disabled={false} />
-                <MintandburnButton onClick={null} name='Mint' disabled={true} />
+                <MintandburnButton onClick={null} name='Mint' variant='mint' disabled={false} />
+                <MintandburnButton onClick={null} name='Mint' variant='burn' disabled={true} />
 
                 </Box>
             </Box>

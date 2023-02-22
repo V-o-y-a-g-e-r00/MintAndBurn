@@ -2,9 +2,12 @@ import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import styles from './styles';
 
+// function getStyleByName(variant){
+//   return 
+// }
 const MintandburnButton = ({ name, onClick, variant, disabled }) => {
   return (
-    <Box sx={styles.base}>
+    <Box sx={[styles.base, styles.variants[variant]]}>
       <button disabled={disabled} onClick={onClick}>
         {name}
       </button>
