@@ -5,7 +5,6 @@ import BackgroundImage from '../assets/images/background/main_background.png';
 export const useStyles = makeStyles({
   mainContainer: {
     padding: '24px 0 186px',
-    // backgroundImage: `url(${BackgroundImage})`,
     backgroundSize: 'cover',
     minHeight: '70vh',
 
