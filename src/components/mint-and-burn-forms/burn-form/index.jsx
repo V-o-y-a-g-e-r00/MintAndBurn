@@ -13,16 +13,16 @@ const BurnForm = () => {
                     <Box className="icon-holder">
                     <svg width="65" height="63" viewBox="0 0 65 63" fill="none" xmlns="http://www.w3.org/2000/svg">
 <rect x="1.5" y="1.5" width="62" height="60" rx="18.5" fill="url(#paint0_linear_715_64)"/>
-<rect x="1.5" y="1.5" width="62" height="60" rx="18.5" stroke="black" stroke-width="3"/>
-<rect x="1.5" y="1.5" width="62" height="60" rx="18.5" stroke="url(#paint1_linear_715_64)" stroke-width="3"/>
+<rect x="1.5" y="1.5" width="62" height="60" rx="18.5" stroke="black" strokeWidth="3"/>
+<rect x="1.5" y="1.5" width="62" height="60" rx="18.5" stroke="url(#paint1_linear_715_64)" strokeWidth="3"/>
 <defs>
 <linearGradient id="paint0_linear_715_64" x1="11" y1="3.88307e-07" x2="54" y2="63" gradientUnits="userSpaceOnUse">
-<stop stop-color="#FFF6A2"/>
-<stop offset="1" stop-color="#2BFE40" stop-opacity="0.2"/>
+<stop stopColor="#FFF6A2"/>
+<stop offset="1" stopColor="#2BFE40" stopOpacity="0.2"/>
 </linearGradient>
 <linearGradient id="paint1_linear_715_64" x1="11" y1="3.88307e-07" x2="54" y2="63" gradientUnits="userSpaceOnUse">
-<stop stop-color="#FFF6A2"/>
-<stop offset="1" stop-color="#2BFE40" stop-opacity="0.2"/>
+<stop stopColor="#FFF6A2"/>
+<stop offset="1" stopColor="#2BFE40" stopOpacity="0.2"/>
 </linearGradient>
 </defs>
 </svg>
@@ -35,7 +35,7 @@ const BurnForm = () => {
                         Burn Gcoin
                     </Box>
                 </Box>
-                <AmountInput></AmountInput>
+                <AmountInput variant='2'></AmountInput>
                 <Box className='details-list'>
 
 

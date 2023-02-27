@@ -1,12 +1,14 @@
 import Box from '@mui/material/Box';
 import { useStyles } from './styles';
 
-const AmountInput = () => {
+const AmountInput = ({variant}) => {
     const classes = useStyles();
     return (
-        <Box className='amount-container'>
+        
+        // <Box className={`classes. variant-${variant}`}>
+        <Box className={[classes.AmountContainer, `variant-${variant}`]}>
             <Box className='right-side-container'>
-                Balance: 0
+                Balance: 0 
             </Box>
             <Box className='input-container'>
                 <input type="text" placeholder='Enter'/>

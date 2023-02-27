@@ -14,15 +14,7 @@ export const useStyles = makeStyles({
     },
 
     mintForm: {
-        '--base-font-color': '#FFFFFF',
-        '--base-font-weight': '600',
-        '--accent-font-color-1':'#FFC086',
-        '--accent-font-color-2': '#FFA723',
-        '--base-font-family':'Montserrat',
-        '--form-header-font-size': '2.1875rem',
-        '--form-header-font-weight': '700',
-        '--form-content-font-size': '1.25rem',
-        '--input-border-color': '#DCB9FF',
+
 
         width: '100%',
         height: '46.625rem',
@@ -70,51 +62,7 @@ export const useStyles = makeStyles({
                 fontWeight: 'var(--form-header-font-weight)',
             }
         },
-        '& .amount-container':{
-            // marginBottom: '2.5rem',
 
-            '& .right-side-container':{
-                margin:'auto',
-                display: 'flex',
-                justifyContent: 'end',
-                color: 'var(--accent-font-color-1)',
-            },
-            '& .input-container':{
-                position: 'relative',
-                margin: '0.9375rem 0px',
-
-                '& input':{
-                    '-webkit-appearance': 'none',
-                    outline: 'none',
-                    border: '0.125rem solid var(--input-border-color)',
-                    background: 'transparent',
-                    minWidth: 'unset',
-                    width: '100%',
-                    padding: '1.4375rem 0.9375rem',
-
-                    borderRadius: '0.9375rem',
-                    fontFamily:'var(--base-font-family)',
-                    fontSize: 'var(--form-content-font-size)',
-                    fontWeight: 'var(--base-font-weight)',
-                    color: 'var(--base-font-color)',
-
-                    '&::placeholder':{
-                        color: 'var(--base-font-color)',
-                    }
-                    
-                },
-                '& .max-amount-container':{
-                    position:'absolute',
-                    right: '0.625rem',
-                    top: '0px',
-                    height: '100%',
-
-                    display: 'flex',
-                    alignItems: 'center',
-                    color: 'var(--accent-font-color-2)',
-                }
-            }
-        },
         '& .details-list':{
             // 'margin-bottom': '1.75rem',
 

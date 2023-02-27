@@ -2,10 +2,16 @@ import Router from './router';
 import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
 
+import "./App.css";
+
+
+
 const App = () => {
 
 const body = document.querySelector('body');
 const isLoading = useSelector(state => state.application.isLoading);
+
+
 
 useEffect(() => {
     if(isLoading){

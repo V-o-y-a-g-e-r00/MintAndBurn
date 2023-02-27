@@ -8,15 +8,12 @@ export const useStyles = makeStyles({
         marginBottom: '4.0625rem',
     },
     Header: {
-        '--forms-container-header-font-size': '2.8125rem',
-        '--forms-container-header-weight': '700',
-        '--base-font-color': '#FFFFFF',
-
         margin: 'auto',
         marginBottom: '4rem',
         color: 'var(--base-font-color)',
         fontWeight: 'var(--forms-container-header-weight)',
         fontSize: 'var(--forms-container-header-font-size)',
+        fontFamily: 'var(--base-font-family)',
     },
     FormsContainer: {
         display:'flex',

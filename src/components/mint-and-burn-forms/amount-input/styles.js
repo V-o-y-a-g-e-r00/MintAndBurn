@@ -1,7 +1,18 @@
+import { red } from '@mui/material/colors';
 import { makeStyles } from '@mui/styles';
 
 export const useStyles = makeStyles({
-    '.amount-container':{
+    AmountContainer:{
+        '&.variant-1':{
+            '& input':{
+                border: '0.125rem solid var(--input-border-color-1)',
+            }
+        },
+        '&.variant-2':{
+            '& input':{
+                border: '0.125rem solid var(--input-border-color-2)',
+            }
+        },
 
         '& .right-side-container':{
             margin:'auto',
@@ -16,7 +27,7 @@ export const useStyles = makeStyles({
             '& input':{
                 '-webkit-appearance': 'none',
                 outline: 'none',
-                border: '0.125rem solid var(--input-border-color)',
+                // border: '0.125rem solid var(--input-border-color)',
                 background: 'transparent',
                 minWidth: 'unset',
                 width: '100%',
@@ -31,7 +42,6 @@ export const useStyles = makeStyles({
                 '&::placeholder':{
                     color: 'var(--base-font-color)',
                 }
-                
             },
             '& .max-amount-container':{
                 position:'absolute',
@@ -43,7 +53,8 @@ export const useStyles = makeStyles({
                 alignItems: 'center',
                 color: 'var(--accent-font-color-2)',
             }
-        }
+        },
+
     }
 
 

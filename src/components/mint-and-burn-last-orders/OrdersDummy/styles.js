@@ -10,7 +10,7 @@ export const useStyles = makeStyles({
         alignItems: 'center',
     },
     Content: {
-        '--base-font-color': '#FFFFFF',
+        
         padding: '2.6875rem 0',
         display: 'flex',
         alignItems: 'center',

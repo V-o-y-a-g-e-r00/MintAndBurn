@@ -6,7 +6,7 @@ const GeneralLayout = ({ children }) => {
   const classes = useStyles();
 
   return (
-    <>
+    <div className={classes.BaseStyles}>
       <div className={classes.BackgroundHolder}>
       <SnetNavigation />
       <div className={classes.mainContainer}>
@@ -14,7 +14,7 @@ const GeneralLayout = ({ children }) => {
       </div>
       <SnetSnackbar/>
       </div>
-    </>
+    </div>
   );
 };
 

@@ -7,15 +7,12 @@ export const useStyles = makeStyles({
         flexDirection: 'column',
     },
     Header2: {
-        '--last-orders-container-header-font-size': '2.6875rem',
-        '--last-orders-container-header-weight': '700',
-        '--base-font-color': '#FFFFFF',
-
         margin: 'auto',
         marginBottom: '2.5rem',
         color: 'var(--base-font-color)',
         fontWeight: 'var(--forms-container-header-weight)',
         fontSize: 'var(--last-orders-container-header-font-size)',
+        fontFamily: 'var(--base-font-family)',
     },
     LastOrdersContainer: {
         width:'100%',
@@ -26,5 +23,6 @@ export const useStyles = makeStyles({
         display:'flex',
         flexDirection: 'column',
         justifyContent: 'space-between',
+        fontFamily: 'var(--base-font-family)',
     }
 })

@@ -1,8 +1,5 @@
 const styles = {
-    '--base-font-color': '#FFFFFF',
-    '--base-font-family':'Montserrat',
-    '--form-header-font-size': '2.1875rem',
-    '--form-header-font-weight': '700',
+
 base: {
     width: '100%',
     '& > button': {
@@ -11,9 +8,13 @@ base: {
         borderRadius: '1.25rem',
         border: 'none',
         color: 'var(--base-font-color)',
+        
         fontSize: 'var(--form-header-font-size)',
+
         fontFamily: 'var(--base-font-family)',
         fontWeight: 'var(--form-header-font-weight)',
+
+        fontFamily: 'var(--base-font-family)',
     }
 },
 variants: {
