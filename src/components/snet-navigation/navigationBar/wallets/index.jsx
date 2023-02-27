@@ -7,6 +7,8 @@ import SnetButton from '../../../ui/snet-button';
 import useNavbarStyles from '../../style';
 import propTypes from 'prop-types';
 
+import MintandburnButtonSmall from '../../../ui/mintandburn-button-small';
+
 const Wallets = ({ openModal, onWalletConnect}) => {
     const classes  = useNavbarStyles();
     const walletsCount = useSelector(state => state.wallets.walletsCount);
@@ -36,7 +38,11 @@ const Wallets = ({ openModal, onWalletConnect}) => {
             </Box>
         </Box>
     ) : (
-        <SnetButton name="Connect Wallets" onClick={openWalletConnector} />
+        <>
+            <SnetButton name="Connect Wallets" onClick={openWalletConnector} />
+            <MintandburnButtonSmall name="Connect Wallets" onClick={openWalletConnector}></MintandburnButtonSmall>
+        </>
+        
     )
 };
 

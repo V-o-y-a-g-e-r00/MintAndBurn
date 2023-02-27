@@ -16,6 +16,7 @@ export const useStyles = makeStyles({
         alignItems: 'center',
         fontSize: '2.1875rem',
         color: 'var(--base-font-color)',
+        fontWeight: 'var(--last-orders-dummy-font-weight)',
 
         '& svg':{
             flexShrink: '0',

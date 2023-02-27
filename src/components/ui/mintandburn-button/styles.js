@@ -13,8 +13,6 @@ base: {
 
         fontFamily: 'var(--base-font-family)',
         fontWeight: 'var(--form-header-font-weight)',
-
-        fontFamily: 'var(--base-font-family)',
     }
 },
 variants: {

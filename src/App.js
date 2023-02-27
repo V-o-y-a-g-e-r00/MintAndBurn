@@ -2,7 +2,7 @@ import Router from './router';
 import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
 
-import "./App.css";
+import "./fonts.css";
 
 
 
