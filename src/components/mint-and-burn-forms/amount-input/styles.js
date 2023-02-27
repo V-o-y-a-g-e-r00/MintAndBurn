@@ -43,6 +43,7 @@ export const useStyles = makeStyles({
                     color: 'var(--base-font-color)',
                 }
             },
+
             '& .max-amount-container':{
                 position:'absolute',
                 right: '0.625rem',

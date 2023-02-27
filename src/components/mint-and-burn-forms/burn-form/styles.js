@@ -18,7 +18,6 @@ export const useStyles = makeStyles({
         height: '46.625rem',
         flex: '0 1 49%',
         
-        background: 'blue',
         borderRadius: '2.5rem',
         color: 'var(--base-font-color)',
         fontSize: 'var(--form-content-font-size)',
