@@ -4,7 +4,7 @@ import BackgroundImage from '../assets/images/background/main_background.png';
 // eslint-disable-next-line import/prefer-default-export
 export const useStyles = makeStyles({
   mainContainer: {
-    padding: '24px 0 186px',
+    padding: '4.0625rem 0 5rem 0',
     backgroundSize: 'cover',
     minHeight: '70vh',
 

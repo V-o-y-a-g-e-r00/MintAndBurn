@@ -5,6 +5,7 @@ export const useStyles = makeStyles({
         width:'100%',
         display: 'flex',
         flexDirection: 'column',
+        marginBottom: '4.0625rem',
     },
     Header: {
         '--forms-container-header-font-size': '2.8125rem',
@@ -12,7 +13,6 @@ export const useStyles = makeStyles({
         '--base-font-color': '#FFFFFF',
 
         margin: 'auto',
-        marginTop: '4rem',
         marginBottom: '4rem',
         color: 'var(--base-font-color)',
         fontWeight: 'var(--forms-container-header-weight)',

@@ -8,7 +8,8 @@ import ColorCodes from '../../assets/theme/colorCodes';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProposals, getPools} from "../../store/slices/event/eventActions";
 
-import MintAndBurnForms from '../../components/mint-and-burn-forms/'
+import MintAndBurnForms from '../../components/mint-and-burn-forms/';
+import MintAndBurnLastOrders from '../../components/mint-and-burn-last-orders/';
 
 const Voting = () => {
   console.log("COMPONENT VOTING PAGE")
@@ -43,8 +44,9 @@ const Voting = () => {
         <title>SingularityNet Voting</title>
       </Helmet>
       <GeneralLayout>
-        <Box display="flex" justifyContent="center" alignItems="center" width="100%">
+        <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center" width="100%">
           <MintAndBurnForms></MintAndBurnForms>
+          <MintAndBurnLastOrders></MintAndBurnLastOrders>
         </Box>
       </GeneralLayout>
     </>

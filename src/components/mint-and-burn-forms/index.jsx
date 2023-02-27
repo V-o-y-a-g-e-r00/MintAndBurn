@@ -11,12 +11,8 @@ const MintAndBurnForms = () => {
 const classes = useStyles();
 return (
 <Box className={classes.MintAndBurnForms}>
-    {/* <Typography>
-        Mint or burn Gcoin
-    </Typography> */}
     <Box className={classes.Header}>Mint or burn Gcoin</Box>
     <Box className={classes.FormsContainer}>
-        
         <MintForm></MintForm>
         <BurnForm></BurnForm>
     </Box>
