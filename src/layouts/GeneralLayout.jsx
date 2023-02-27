@@ -7,11 +7,13 @@ const GeneralLayout = ({ children }) => {
 
   return (
     <>
+      <div className={classes.BackgroundHolder}>
       <SnetNavigation />
       <div className={classes.mainContainer}>
         <div className={classes.wrapper}>{children}</div>
       </div>
       <SnetSnackbar/>
+      </div>
     </>
   );
 };

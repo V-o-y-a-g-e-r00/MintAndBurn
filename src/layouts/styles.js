@@ -3,12 +3,13 @@ import BackgroundImage from '../assets/images/background/main_background.png';
 
 // eslint-disable-next-line import/prefer-default-export
 export const useStyles = makeStyles({
+  BackgroundHolder: {
+    background: `url(${BackgroundImage}), linear-gradient(153.37deg, #2C2352 12.94%, #100E13 91.8%)`,
+  },
   mainContainer: {
     padding: '4.0625rem 0 5rem 0',
     backgroundSize: 'cover',
     minHeight: '70vh',
-
-    background: `url(${BackgroundImage}), linear-gradient(153.37deg, #2C2352 12.94%, #100E13 91.8%)`,
   },
   wrapper: {
     maxWidth: 1280,

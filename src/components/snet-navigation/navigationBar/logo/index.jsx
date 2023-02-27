@@ -1,7 +1,7 @@
 import Box from '@mui/material/Box';
 import { useNavigate } from 'react-router-dom';
 import Paths from '../../../../router/paths';
-import VotingLogo from '../../../../assets/images/logo/voting_logo.svg';
+import LogoImage from '../../../../assets/images/logo/MintAndBurn_logo.svg';
 import useNavbarStyles from '../../style';
 
 const VotingLogoBlock = () => {
@@ -13,17 +13,8 @@ const VotingLogoBlock = () => {
   };
 
   return (
-    <Box onClick={onClickLogo} className={`${classes.flex} ${classes.cursor}`}>
-      <img src={VotingLogo} alt="SingNet Logo" className={classes.logo} />
-      <span
-        style={{
-          fontSize: '1.25rem',
-          fontWeight: 700,
-          lineHeight: '1rem'
-        }}
-      >
-        VOTING
-      </span>
+    <Box className={`${classes.flex}`}>
+      <img src={LogoImage} alt="Logo" className={classes.logo} />
     </Box>
   );
 };
