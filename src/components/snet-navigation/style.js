@@ -34,7 +34,7 @@ const useMenubarStyles = makeStyles(() => ({
     padding: '1rem 3.75rem',
     boxShadow: '0 2px 3px 0 rgba(0,0,0,0.1)',
 
-    background: 'linear-gradient(180deg, #3A3273 0%, #6157A6 23.96%, #7B70C8 50.81%, #5F56A3 76.04%, #3A3273 100%)',
+    background: 'linear-gradient(180deg, rgba(58, 50, 115, 0.75), rgba(97, 87, 166, 0.75), rgba(123, 112, 200, 0.75), rgba(95, 86, 163, 0.75), rgba(58, 50, 115, 0.75))',
 
     '@media(max-width: 1280px)': { padding: '9px 10px' },
 

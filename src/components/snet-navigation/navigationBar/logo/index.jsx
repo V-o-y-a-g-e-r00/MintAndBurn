@@ -14,7 +14,7 @@ const VotingLogoBlock = () => {
 
   return (
     <Box className={`${classes.flex}`}>
-      <img src={LogoImage} alt="Logo" className={classes.logo} />
+      <img src={LogoImage} alt="Logo" className={classes.logo} /> 
     </Box>
   );
 };

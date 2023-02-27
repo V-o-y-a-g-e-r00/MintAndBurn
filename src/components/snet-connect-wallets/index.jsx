@@ -14,9 +14,11 @@ const SnetConnectWallets = ({ isDialogOpen, onDialogClose, onWalletConnect }) =>
 
   const WalletConnectorByBlockchain = () => {
     return blockchains.map((blockchain) => {
+      if(blockchain.name === 'Cardano'){
       return (
         <ConnectOptions blockchain={blockchain} key={blockchain.name} onWalletConnect={onWalletConnect}/>
       )
+      }
     })
   }
 
