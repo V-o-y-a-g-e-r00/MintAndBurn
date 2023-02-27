@@ -9,7 +9,7 @@ export const useStyles = makeStyles({
             justifyContent: 'end',
             color: 'var(--accent-font-color-1)',
         },
-        '& .input-container':{
+        '& .input-container':{  
             position: 'relative',
             margin: '0.9375rem 0px',
 

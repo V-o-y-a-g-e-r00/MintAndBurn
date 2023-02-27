@@ -1,5 +1,5 @@
 import { makeStyles } from '@mui/styles';
-import BackgroundImage from '../assets/images/background/BackgroundImage.png';
+import BackgroundImage from '../assets/images/background/main_background.png';
 
 // eslint-disable-next-line import/prefer-default-export
 export const useStyles = makeStyles({
@@ -9,7 +9,7 @@ export const useStyles = makeStyles({
     backgroundSize: 'cover',
     minHeight: '70vh',
 
-    background: 'linear-gradient(153.37deg, #2C2352 12.94%, #100E13 91.8%)',
+    background: `url(${BackgroundImage}), linear-gradient(153.37deg, #2C2352 12.94%, #100E13 91.8%)`,
   },
   wrapper: {
     maxWidth: 1280,

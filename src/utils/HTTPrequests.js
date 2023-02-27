@@ -33,92 +33,92 @@ export const getProposalsByEventId = async (address) => {
   }
 };
 export const getPoolsByEventId = async () => {
-  try {
-    const payload = {
-      event_id: process.env.REACT_APP_EVENT_ID
-    };
-    // console.log(payload);
-    // console.log(process.env);
-    const {data} = await axios.post(
-      process.env.REACT_APP_BASE_API_URI + "/pools/",
-      payload
-    );
-    return data;
-  } catch (error) {
-    console.log(error);
-    throw error;
-  }
+  // try {
+  //   const payload = {
+  //     event_id: process.env.REACT_APP_EVENT_ID
+  //   };
+  //   // console.log(payload);
+  //   // console.log(process.env);
+  //   const {data} = await axios.post(
+  //     process.env.REACT_APP_BASE_API_URI + "/pools/",
+  //     payload
+  //   );
+  //   return data;
+  // } catch (error) {
+  //   console.log(error);
+  //   throw error;
+  // }
 };
 export const savePoolAnswers = async ({address, message, signature}) => {
-  try {
-    console.log("const savePoolAnswers = async");
-    console.log({
-      event_id: process.env.REACT_APP_EVENT_ID,
-      message: message,
-      address: address,
-      signature: signature,
-    });
-    const {data} = await axios.post(
-      process.env.REACT_APP_BASE_API_URI + "/proposal/save",
-      {
-        event_id: process.env.REACT_APP_EVENT_ID,
-        message,
-        address,
-        signature,
-      }
-    );
-    console.log(data);
-    return data;
-  } catch (error) {
-    console.log(error);
-    throw error;
-  }
+  // try {
+  //   console.log("const savePoolAnswers = async");
+  //   console.log({
+  //     event_id: process.env.REACT_APP_EVENT_ID,
+  //     message: message,
+  //     address: address,
+  //     signature: signature,
+  //   });
+  //   const {data} = await axios.post(
+  //     process.env.REACT_APP_BASE_API_URI + "/proposal/save",
+  //     {
+  //       event_id: process.env.REACT_APP_EVENT_ID,
+  //       message,
+  //       address,
+  //       signature,
+  //     }
+  //   );
+  //   console.log(data);
+  //   return data;
+  // } catch (error) {
+  //   console.log(error);
+  //   throw error;
+  // }
 };
 export const getWalletsCollection = async (address) => {
-  try {
-    console.log("getWalletsCollection");
-    const {data} = await axios.post(
-      process.env.REACT_APP_BASE_API_URI + "/wallet/collection",
-      {
-        event_id: process.env.REACT_APP_EVENT_ID,
-        current_wallet: {
-          address
-        }
-      }
-    );
-    console.log(data);
-    return data;
-  } catch (error) {
-    console.log(error);
-    throw error;
-  }
+  // try {
+  //   console.log("getWalletsCollection");
+  //   const {data} = await axios.post(
+  //     process.env.REACT_APP_BASE_API_URI + "/wallet/collection",
+  //     {
+  //       event_id: process.env.REACT_APP_EVENT_ID,
+  //       current_wallet: {
+  //         address
+  //       }
+  //     }
+  //   );
+  //   console.log(data);
+  //   return data;
+  // } catch (error) {
+  //   console.log(error);
+  //   throw error;
+  // }
 };
 export const updateWalletsCollection = async ({currentWallet, newWallet, removeWallet}) => {
-  try {
-    console.log("updateWalletsCollection");
+  // try {
+  //   console.log("updateWalletsCollection");
 
-    const {data} = await axios.post(
-      process.env.REACT_APP_BASE_API_URI + "/wallet/collection/update",
-      {
-        event_id: process.env.REACT_APP_EVENT_ID,
-        current_wallet: {
-          address: currentWallet?.address,
-          extension: currentWallet?.extension
-        },
-        new_wallet: {
-          address: newWallet?.address,
-          extension: newWallet?.extension
-        },
-        remove_wallet: {
-          address: removeWallet?.address,
-          extension: removeWallet?.extension
-        }
-      }
-    );
-    console.log(data);
-    return data;
-  } catch (error) {
-    console.log(error);
-    throw error;
-  }
+  //   const {data} = await axios.post(
+  //     process.env.REACT_APP_BASE_API_URI + "/wallet/collection/update",
+  //     {
+  //       event_id: process.env.REACT_APP_EVENT_ID,
+  //       current_wallet: {
+  //         address: currentWallet?.address,
+  //         extension: currentWallet?.extension
+  //       },
+  //       new_wallet: {
+  //         address: newWallet?.address,
+  //         extension: newWallet?.extension
+  //       },
+  //       remove_wallet: {
+  //         address: removeWallet?.address,
+  //         extension: removeWallet?.extension
+  //       }
+  //     }
+  //   );
+  //   console.log(data);
+  //   return data;
+  // } catch (error) {
+  //   console.log(error);
+  //   throw error;
+  // }
 };
