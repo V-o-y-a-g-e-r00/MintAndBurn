@@ -16,9 +16,10 @@ export const useStyles = makeStyles({
     mintForm: {
 
 
-        width: '100%',
+        // width: '100%',
         height: '46.625rem',
-        flex: '0 1 49%',
+        // flex: '0 1 49%',
+        flexGrow: '1',
 
         background: 'blue',
         borderRadius: '2.5rem',

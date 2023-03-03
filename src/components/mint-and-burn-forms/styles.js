@@ -17,8 +17,11 @@ export const useStyles = makeStyles({
     },
     FormsContainer: {
         display:'flex',
+        flexWrap: 'wrap',
+        // gap: '3.125%',
+        gap: 'calc(max(3.125%, 1rem))',
         width:'100%',
         justifyContent: 'space-between',
-        // backgrosund: 'red',
+        // background: 'red',
     }
 })
