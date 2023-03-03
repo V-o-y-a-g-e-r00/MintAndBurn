@@ -41,7 +41,11 @@ export const useStyles = makeStyles({
 
                 '&::placeholder':{
                     color: 'var(--base-font-color)',
-                }
+                },
+            },
+
+            '&.invalid input':{
+                border: '0.125rem solid red',
             },
 
             '& .max-amount-container':{
