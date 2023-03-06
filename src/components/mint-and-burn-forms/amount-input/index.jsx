@@ -9,7 +9,7 @@ const AmountInput = ({variant}) => {
     };
 
     const [isInputValid, setIsInputValid] = useState(true);
-    const [inputValue, setInputValue] = useState('');
+    const [stateInputValue, setStateInputValue] = useState('');
     const classes = useStyles();
 
     const inputRef = useRef(null);
@@ -20,11 +20,12 @@ const AmountInput = ({variant}) => {
         }
     }
     function setInputValueAndCursor(inputValue, cursorPosition){
-        inputRef.current.value = inputValue; 
+        setStateInputValue(inputValue);
+        inputRef.current.value = inputValue;
         inputRef.current.setSelectionRange(cursorPosition, cursorPosition);
     }
-    function obtainIntegersNumberBeforeCursor(){
-        let inputString = (inputRef.current.value.substr(0, inputRef.current.selectionStart));
+    function obtainIntegersNumberBeforeCursor(inputString, selectionStart){
+        inputString = (inputString.substr(0, selectionStart));
         let integersNumberBeforeCursor = 0;
         for(let i=0; i<inputString.length; i++){
             if(inputString.charAt(i) !== ' '){
@@ -33,7 +34,7 @@ const AmountInput = ({variant}) => {
         }
         return integersNumberBeforeCursor;
     }
-    function bringCursorBack(integersNumberBeforeCursor, inputString, isThereSpaceBeforeCursor){
+    function obtainCursorPositionAfterSpaceFormatting(integersNumberBeforeCursor, inputString, isThereSpaceBeforeCursor){
         let newCursorPosition = 0;
         let lookedIntegersNumber = 0;
         while(lookedIntegersNumber < integersNumberBeforeCursor){
@@ -42,11 +43,10 @@ const AmountInput = ({variant}) => {
             }
             newCursorPosition++;
         }
-        if(isThereSpaceBeforeCursor &&  inputRef.current.value.charAt(newCursorPosition) === ' '){
-            inputRef.current.setSelectionRange(newCursorPosition+1,newCursorPosition+1);
-        }else{
-            inputRef.current.setSelectionRange(newCursorPosition,newCursorPosition);
+        if(isThereSpaceBeforeCursor && inputString.charAt(newCursorPosition) === ' '){
+            newCursorPosition++;
         }
+        return newCursorPosition;
     }
     function isThereSpaceBeforeCursorFunc(inputString, selectionStart){
         return (inputString.charAt(selectionStart-1) === ' ') ? true : false;
@@ -77,12 +77,10 @@ const AmountInput = ({variant}) => {
     }
     function spaceFormatting(inputString, selectionStart){
         const isThereSpaceBeforeCursor = isThereSpaceBeforeCursorFunc(inputString, selectionStart);
+        const integersNumberBeforeCursor = obtainIntegersNumberBeforeCursor(inputString, selectionStart);
         inputString = removeAndAddSpaces(inputString);
-        
-        setInputValue(inputString);
-        const integersNumberBeforeCursor = obtainIntegersNumberBeforeCursor();
-        inputRef.current.value = inputString;
-        bringCursorBack(integersNumberBeforeCursor, inputString, isThereSpaceBeforeCursor);
+        const cursorPosition = obtainCursorPositionAfterSpaceFormatting(integersNumberBeforeCursor, inputString, isThereSpaceBeforeCursor);
+        setInputValueAndCursor(inputString, cursorPosition);
     }
     function isStringConsistOfAllowableCharacters(inputString){
         return inputString.match(/^[0-9\.\s]*$/) !== null;
@@ -93,8 +91,8 @@ const AmountInput = ({variant}) => {
         if(isStringConsistOfAllowableCharacters(inputString)){
             spaceFormatting(inputString, selectionStart);   
         }else {
-            const pastedLength = inputString.length - inputValue.length;
-            setInputValueAndCursor(inputValue, selectionStart-pastedLength);
+            const pastedLength = inputString.length - stateInputValue.length;
+            setInputValueAndCursor(stateInputValue, selectionStart-pastedLength);
         }
     }
     function handleChange(){
