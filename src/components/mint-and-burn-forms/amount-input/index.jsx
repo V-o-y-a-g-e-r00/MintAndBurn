@@ -36,9 +36,7 @@ const AmountInput = ({variant}) => {
         let newCursorPosition = 0;
         let lookedIntegersNumber = 0;
         while(lookedIntegersNumber < integersNumberBeforeCursor){
-
             console.log("lookedIntegersNumber=" + lookedIntegersNumber + " integersNumberBeforeCursor=" + integersNumberBeforeCursor);
-
             if(inputString.charAt(newCursorPosition) !== " "){
                 lookedIntegersNumber++;
             }
@@ -48,6 +46,7 @@ const AmountInput = ({variant}) => {
         inputRef.current.setSelectionRange(newCursorPosition,newCursorPosition);
     }
     function spaceFormatting(inputString){
+        // let isThereSpace
         inputString = inputString.split(/\s+/).join('');
         const firstDotPosition = inputString.indexOf('.');
         let integralPartLength;
@@ -93,10 +92,10 @@ const AmountInput = ({variant}) => {
     function handleChange(event){
         characterValidation(event);
     }
-    useEffect(() => {
-        // inputRef.classList.add("test");
-        //inputRef.current.setSelectionRange(1,1);
-    });
+    // useEffect(() => {
+    //     // inputRef.classList.add("test");
+    //     //inputRef.current.setSelectionRange(1,1);
+    // });
     return (
         <Box className={[classes.AmountContainer, `variant-${variant}`]}>
             <Box className='right-side-container'>

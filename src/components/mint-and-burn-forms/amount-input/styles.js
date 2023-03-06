@@ -32,6 +32,7 @@ export const useStyles = makeStyles({
                 minWidth: 'unset',
                 width: '100%',
                 padding: '1.4375rem 0.9375rem',
+                paddingRight: '3.625rem',
 
                 borderRadius: '0.9375rem',
                 fontFamily:'var(--base-font-family)',
