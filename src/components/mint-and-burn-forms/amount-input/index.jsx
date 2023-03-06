@@ -32,7 +32,7 @@ const AmountInput = ({variant}) => {
         console.log('integersNumberBeforeCursor=' + integersNumberBeforeCursor);
         return integersNumberBeforeCursor;
     }
-    function bringCursorBack(integersNumberBeforeCursor, inputString){
+    function bringCursorBack(integersNumberBeforeCursor, inputString, isThereSpaceBeforeCursor){
         let newCursorPosition = 0;
         let lookedIntegersNumber = 0;
         while(lookedIntegersNumber < integersNumberBeforeCursor){
@@ -43,10 +43,17 @@ const AmountInput = ({variant}) => {
             newCursorPosition++;
             console.log("bringCursorBack");
         }
-        inputRef.current.setSelectionRange(newCursorPosition,newCursorPosition);
+        if(isThereSpaceBeforeCursor &&  inputRef.current.value.charAt(newCursorPosition) === ' '){
+            inputRef.current.setSelectionRange(newCursorPosition+1,newCursorPosition+1);
+        }else{
+            inputRef.current.setSelectionRange(newCursorPosition,newCursorPosition);
+        }
     }
     function spaceFormatting(inputString){
-        // let isThereSpace
+        let isThereSpaceBeforeCursor = false;
+        if(inputRef.current.value.charAt(inputRef.current.selectionStart-1) === ' '){
+            isThereSpaceBeforeCursor = true;
+        }  
         inputString = inputString.split(/\s+/).join('');
         const firstDotPosition = inputString.indexOf('.');
         let integralPartLength;
@@ -74,7 +81,7 @@ const AmountInput = ({variant}) => {
         const integersNumberBeforeCursor = obtainIntegersNumberBeforeCursor();
         console.log("integersNumberBeforeCursor=" + integersNumberBeforeCursor);
         inputRef.current.value = inputString;
-        bringCursorBack(integersNumberBeforeCursor, inputString);
+        bringCursorBack(integersNumberBeforeCursor, inputString, isThereSpaceBeforeCursor);
     }
     function characterValidation(event){
         // const inputString = event.target.value;
