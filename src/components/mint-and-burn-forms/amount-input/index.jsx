@@ -1,9 +1,7 @@
 import Box from '@mui/material/Box';
 import { useStyles } from './styles';
 
-import { useState, useEffect, useRef} from 'react';
-
-
+import { useState, useRef} from 'react';
 
 const AmountInput = ({variant}) => {
     const classEnum = {
@@ -21,6 +19,10 @@ const AmountInput = ({variant}) => {
             return classEnum.INVALID;
         }
     }
+    function setInputValueAndCursor(inputValue, cursorPosition){
+        inputRef.current.value = inputValue; 
+        inputRef.current.setSelectionRange(cursorPosition, cursorPosition);
+    }
     function obtainIntegersNumberBeforeCursor(){
         let inputString = (inputRef.current.value.substr(0, inputRef.current.selectionStart));
         let integersNumberBeforeCursor = 0;
@@ -29,19 +31,16 @@ const AmountInput = ({variant}) => {
                 integersNumberBeforeCursor++;
             }
         }
-        console.log('integersNumberBeforeCursor=' + integersNumberBeforeCursor);
         return integersNumberBeforeCursor;
     }
     function bringCursorBack(integersNumberBeforeCursor, inputString, isThereSpaceBeforeCursor){
         let newCursorPosition = 0;
         let lookedIntegersNumber = 0;
         while(lookedIntegersNumber < integersNumberBeforeCursor){
-            console.log("lookedIntegersNumber=" + lookedIntegersNumber + " integersNumberBeforeCursor=" + integersNumberBeforeCursor);
             if(inputString.charAt(newCursorPosition) !== " "){
                 lookedIntegersNumber++;
             }
             newCursorPosition++;
-            console.log("bringCursorBack");
         }
         if(isThereSpaceBeforeCursor &&  inputRef.current.value.charAt(newCursorPosition) === ' '){
             inputRef.current.setSelectionRange(newCursorPosition+1,newCursorPosition+1);
@@ -49,11 +48,10 @@ const AmountInput = ({variant}) => {
             inputRef.current.setSelectionRange(newCursorPosition,newCursorPosition);
         }
     }
-    function spaceFormatting(inputString){
-        let isThereSpaceBeforeCursor = false;
-        if(inputRef.current.value.charAt(inputRef.current.selectionStart-1) === ' '){
-            isThereSpaceBeforeCursor = true;
-        }  
+    function isThereSpaceBeforeCursorFunc(inputString, selectionStart){
+        return (inputString.charAt(selectionStart-1) === ' ') ? true : false;
+    }
+    function removeAndAddSpaces(inputString){
         inputString = inputString.split(/\s+/).join('');
         const firstDotPosition = inputString.indexOf('.');
         let integralPartLength;
@@ -75,34 +73,34 @@ const AmountInput = ({variant}) => {
             currentPosition += 4;
             integralPartLength +=1;
         }
-        console.log("inputString=" + inputString);
-
+        return inputString;
+    }
+    function spaceFormatting(inputString, selectionStart){
+        const isThereSpaceBeforeCursor = isThereSpaceBeforeCursorFunc(inputString, selectionStart);
+        inputString = removeAndAddSpaces(inputString);
+        
         setInputValue(inputString);
         const integersNumberBeforeCursor = obtainIntegersNumberBeforeCursor();
-        console.log("integersNumberBeforeCursor=" + integersNumberBeforeCursor);
         inputRef.current.value = inputString;
         bringCursorBack(integersNumberBeforeCursor, inputString, isThereSpaceBeforeCursor);
     }
-    function characterValidation(event){
-        // const inputString = event.target.value;
+    function isStringConsistOfAllowableCharacters(inputString){
+        return inputString.match(/^[0-9\.\s]*$/) !== null;
+    }
+    function characterValidation(){
         const inputString = inputRef.current.value;
-        if(inputString.match(/^[0-9\.\s]*$/) !== null){
-            spaceFormatting(inputString);   
+        const selectionStart = inputRef.current.selectionStart;
+        if(isStringConsistOfAllowableCharacters(inputString)){
+            spaceFormatting(inputString, selectionStart);   
         }else {
-            const oldSelectionStart = inputRef.current.selectionStart;
-            console.log("oldSelectionStart=" + oldSelectionStart);
             const pastedLength = inputString.length - inputValue.length;
-            inputRef.current.value = inputValue; 
-            inputRef.current.setSelectionRange(oldSelectionStart-pastedLength,oldSelectionStart-pastedLength);
+            setInputValueAndCursor(inputValue, selectionStart-pastedLength);
         }
     }
-    function handleChange(event){
-        characterValidation(event);
+    function handleChange(){
+        characterValidation();
+        //TODO: остальные проверки с выводом ошибок в виде сообщений для пользователя
     }
-    // useEffect(() => {
-    //     // inputRef.classList.add("test");
-    //     //inputRef.current.setSelectionRange(1,1);
-    // });
     return (
         <Box className={[classes.AmountContainer, `variant-${variant}`]}>
             <Box className='right-side-container'>
