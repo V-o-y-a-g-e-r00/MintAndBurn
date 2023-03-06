@@ -95,4 +95,6 @@ export const inputErrors = {
         noIntegerPart : "Enter the integer part of the value",
         noFractionalPart: "Enter the fractional part of the value or remove the dot",
     }
+
 };
+export const maxCharactersInIntegerPartOfInput = 4;

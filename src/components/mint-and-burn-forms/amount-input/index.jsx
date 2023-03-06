@@ -2,7 +2,7 @@ import Box from '@mui/material/Box';
 import { useStyles } from './styles';
 
 import { useState, useRef} from 'react';
-import { inputErrors } from '../../../data/constants/constants';
+import { inputErrors, maxCharactersInIntegerPartOfInput } from '../../../data/constants/constants';
 
 const AmountInput = ({variant}) => {
     const classEnum = {
@@ -115,20 +115,54 @@ const AmountInput = ({variant}) => {
             return false;
         }
     }
+    function maxNumberOfIntegerAndFractionalPartsCheck(inputString){
+        const noSpacesString =  inputString.split(/\s+/).join('');
+        let integerPart;
+        if(noSpacesString.indexOf('.')> -1){
+            console.log("dot");
+            integerPart = (noSpacesString.match(/[^.]*\./)[0]).slice(0, -1);
+            console.log("integerPart1=" + integerPart);
+        }else{
+            console.log("no dot");
+            integerPart = noSpacesString;
+        }
+        console.log("integerPart=" + integerPart);
+        if(integerPart.length > maxCharactersInIntegerPartOfInput){
+            addWarningToList(warnings.triedTooManyCharactersIntegerPart);
+            return false;
+        }else{
+            removeWarningFromList(warnings.triedTooManyCharactersIntegerPart);
+            return true;
+        }
+    }
     function inputBlockingChecks(inputString){
-        let temp = onlyOneDotCheck(inputString) && true ;
-        console.log("inputWarningsList=" + inputWarningsList);
-        //return (onlyOneDotCheck(inputString) && true );
-        return true;
+        // const result = onlyOneDotCheck(inputString) & maxNumberOfIntegerAndFractionalPartsCheck(inputString);
+        const res1 = onlyOneDotCheck(inputString);
+        const res2 = maxNumberOfIntegerAndFractionalPartsCheck(inputString);
+
+        return (res1 && res2);
+    }
+    function restoreInputToPreviousState(inputString, selectionStart){
+        const pastedLength = inputString.length - stateInputValue.length;
+        setInputValueAndCursor(stateInputValue, selectionStart-pastedLength);
     }
     function inputBlockingChecksAndFormatting(){
         const inputString = inputRef.current.value;
         const selectionStart = inputRef.current.selectionStart;
-        if(isStringConsistOfAllowableCharacters(inputString) && inputBlockingChecks(inputString)){
-            spaceFormatting(inputString, selectionStart);   
+        if(isStringConsistOfAllowableCharacters(inputString)){
+            console.log("isStringConsistOfAllowableCharacters true");
+            
+            if(inputBlockingChecks(inputString)){
+                spaceFormatting(inputString, selectionStart);
+            }else{
+                restoreInputToPreviousState(inputString, selectionStart);
+                inputBlockingChecks(stateInputValue);
+            }
         }else {
-            const pastedLength = inputString.length - stateInputValue.length;
-            setInputValueAndCursor(stateInputValue, selectionStart-pastedLength);
+            console.log("isStringConsistOfAllowableCharacters false");
+            restoreInputToPreviousState(inputString, selectionStart);
+
+            inputBlockingChecks(stateInputValue);
         }
     }
     function handleChange(){
@@ -150,7 +184,9 @@ const AmountInput = ({variant}) => {
                 Min amount: 0
             </Box>
             <Box>
-            {inputWarningsList.map(item => item)}
+            {inputWarningsList.map((item, index) => (
+                <div key={index}>{item}</div>
+            ))}
             </Box>
         </Box>
     )
