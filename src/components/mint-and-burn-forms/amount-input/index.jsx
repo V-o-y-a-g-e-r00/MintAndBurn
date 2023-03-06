@@ -21,6 +21,32 @@ const AmountInput = ({variant}) => {
             return classEnum.INVALID;
         }
     }
+    function obtainIntegersNumberBeforeCursor(){
+        let inputString = (inputRef.current.value.substr(0, inputRef.current.selectionStart));
+        let integersNumberBeforeCursor = 0;
+        for(let i=0; i<inputString.length; i++){
+            if(inputString.charAt(i) !== ' '){
+                integersNumberBeforeCursor++;
+            }
+        }
+        console.log('integersNumberBeforeCursor=' + integersNumberBeforeCursor);
+        return integersNumberBeforeCursor;
+    }
+    function bringCursorBack(integersNumberBeforeCursor, inputString){
+        let newCursorPosition = 0;
+        let lookedIntegersNumber = 0;
+        while(lookedIntegersNumber < integersNumberBeforeCursor){
+
+            console.log("lookedIntegersNumber=" + lookedIntegersNumber + " integersNumberBeforeCursor=" + integersNumberBeforeCursor);
+
+            if(inputString.charAt(newCursorPosition) !== " "){
+                lookedIntegersNumber++;
+            }
+            newCursorPosition++;
+            console.log("bringCursorBack");
+        }
+        inputRef.current.setSelectionRange(newCursorPosition,newCursorPosition);
+    }
     function spaceFormatting(inputString){
         inputString = inputString.split(/\s+/).join('');
         const firstDotPosition = inputString.indexOf('.');
@@ -43,9 +69,13 @@ const AmountInput = ({variant}) => {
             currentPosition += 4;
             integralPartLength +=1;
         }
-        inputRef.current.value = inputString;
         console.log("inputString=" + inputString);
+
         setInputValue(inputString);
+        const integersNumberBeforeCursor = obtainIntegersNumberBeforeCursor();
+        console.log("integersNumberBeforeCursor=" + integersNumberBeforeCursor);
+        inputRef.current.value = inputString;
+        bringCursorBack(integersNumberBeforeCursor, inputString);
     }
     function characterValidation(event){
         // const inputString = event.target.value;
@@ -57,7 +87,7 @@ const AmountInput = ({variant}) => {
             console.log("oldSelectionStart=" + oldSelectionStart);
             const pastedLength = inputString.length - inputValue.length;
             inputRef.current.value = inputValue; 
-            event.target.setSelectionRange(oldSelectionStart-pastedLength,oldSelectionStart-pastedLength);
+            inputRef.current.setSelectionRange(oldSelectionStart-pastedLength,oldSelectionStart-pastedLength);
         }
     }
     function handleChange(event){
