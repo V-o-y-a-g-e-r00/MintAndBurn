@@ -14,11 +14,19 @@ const AmountInput = ({variant}) => {
 
 
     const [isInputValid, setIsInputValid] = useState(true);
-    const [inputWarningsList, setInputWarningsList] = useState([]);
-    const [inputErrorsList, setInputErrorsList] = useState([]);
-
     const warnings = inputErrors.warnings;
-    const errors = inputErrors.errors;
+    const [inputWarningsList, setInputWarningsList] = useState([]);
+    let draftInputWarningsList;
+    // let inputWarningsList = [];
+    // function setInputWarningsList(newInputWarningsList){
+    //     inputWarningsList = [...newInputWarningsList];
+    // }
+
+
+
+    
+    // const [inputErrorsList, setInputErrorsList] = useState([]);
+    //const errors = inputErrors.errors;
     
     const classes = useStyles();
 
@@ -95,15 +103,21 @@ const AmountInput = ({variant}) => {
     function isStringConsistOfAllowableCharacters(inputString){
         return inputString.match(/^[0-9\.\s]*$/) !== null;
     }
+    function warningListStateToDraft(){
+        draftInputWarningsList = [...inputWarningsList];
+    }
+    function warningListDraftToState(){
+        setInputWarningsList([...draftInputWarningsList]);
+    }
     function addWarningToList(warning){
-        if(!inputWarningsList.includes(warning)){
-            setInputWarningsList([...inputWarningsList, warning]);
+        if(!draftInputWarningsList.includes(warning)){
+            draftInputWarningsList.push(warning);
         }
     }
     function removeWarningFromList(warning){
-        const indexOfWarning = inputWarningsList.indexOf(warning);
+        const indexOfWarning = draftInputWarningsList.indexOf(warning);
         if(indexOfWarning > -1){
-            setInputWarningsList([...inputWarningsList.slice(0, indexOfWarning), ...inputWarningsList.slice(indexOfWarning+1)]);
+            draftInputWarningsList.splice(warning);
         }
     }
     function onlyOneDotCheck(inputString){
@@ -119,14 +133,15 @@ const AmountInput = ({variant}) => {
         const noSpacesString =  inputString.split(/\s+/).join('');
         let integerPart;
         if(noSpacesString.indexOf('.')> -1){
-            console.log("dot");
+            console.log("maxNumberOfIntegerAndFractionalPartsCheck: has dot");
             integerPart = (noSpacesString.match(/[^.]*\./)[0]).slice(0, -1);
-            console.log("integerPart1=" + integerPart);
+            console.log("integerPart dot=" + integerPart);
         }else{
-            console.log("no dot");
+            console.log("maxNumberOfIntegerAndFractionalPartsCheck: has no dot");
             integerPart = noSpacesString;
+            console.log("integerPart no dot=" + integerPart);
         }
-        console.log("integerPart=" + integerPart);
+        // console.log("integerPart=" + integerPart);
         if(integerPart.length > maxCharactersInIntegerPartOfInput){
             addWarningToList(warnings.triedTooManyCharactersIntegerPart);
             return false;
@@ -136,11 +151,66 @@ const AmountInput = ({variant}) => {
         }
     }
     function inputBlockingChecks(inputString){
+        warningListStateToDraft();
         // const result = onlyOneDotCheck(inputString) & maxNumberOfIntegerAndFractionalPartsCheck(inputString);
-        const res1 = onlyOneDotCheck(inputString);
-        const res2 = maxNumberOfIntegerAndFractionalPartsCheck(inputString);
+        
+        
+        
+        //const res1 = onlyOneDotCheck(inputString);
+        let res1;
+        if(inputString.match(/^.*\..*\..*$/) === null){
+            removeWarningFromList(warnings.triedInputMoreThenOneDot);
+            res1= true;
+        }else{
+            addWarningToList(warnings.triedInputMoreThenOneDot);
+            res1= false;
+        }
+        
+        
+        console.log("onlyOneDotCheck=" + res1);
+        
+        
+        
+        
 
-        return (res1 && res2);
+        
+        
+        
+        
+        
+        //const res2 = maxNumberOfIntegerAndFractionalPartsCheck(inputString);
+        let res2;
+        const noSpacesString =  inputString.split(/\s+/).join('');
+        let integerPart;
+        if(noSpacesString.indexOf('.')> -1){
+            console.log("maxNumberOfIntegerAndFractionalPartsCheck: has dot");
+            integerPart = (noSpacesString.match(/[^.]*\./)[0]).slice(0, -1);
+            console.log("integerPart dot=" + integerPart);
+        }else{
+            console.log("maxNumberOfIntegerAndFractionalPartsCheck: has no dot");
+            integerPart = noSpacesString;
+            console.log("integerPart no dot=" + integerPart);
+        }
+        // console.log("integerPart=" + integerPart);
+        if(integerPart.length > maxCharactersInIntegerPartOfInput){
+            addWarningToList(warnings.triedTooManyCharactersIntegerPart);
+            res2= false;
+        }else{
+            removeWarningFromList(warnings.triedTooManyCharactersIntegerPart);
+            res2= true;
+        }
+
+
+
+        console.log("maxNumberOfIntegerAndFractionalPartsCheck=" + res2);
+        
+        
+        
+        
+        
+        
+        warningListDraftToState();
+        return res1 & res2;
     }
     function restoreInputToPreviousState(inputString, selectionStart){
         const pastedLength = inputString.length - stateInputValue.length;
@@ -149,21 +219,45 @@ const AmountInput = ({variant}) => {
     function inputBlockingChecksAndFormatting(){
         const inputString = inputRef.current.value;
         const selectionStart = inputRef.current.selectionStart;
-        if(isStringConsistOfAllowableCharacters(inputString)){
-            console.log("isStringConsistOfAllowableCharacters true");
-            
-            if(inputBlockingChecks(inputString)){
-                spaceFormatting(inputString, selectionStart);
-            }else{
-                restoreInputToPreviousState(inputString, selectionStart);
-                inputBlockingChecks(stateInputValue);
-            }
-        }else {
-            console.log("isStringConsistOfAllowableCharacters false");
-            restoreInputToPreviousState(inputString, selectionStart);
+        //if(isStringConsistOfAllowableCharacters(inputString)){
+        //    console.log("isStringConsistOfAllowableCharacters true");
 
-            inputBlockingChecks(stateInputValue);
-        }
+
+            //inputBlockingChecks(inputString);
+            const test = inputBlockingChecks(inputString);
+            console.log("test=" + test);
+            if(test){
+
+                spaceFormatting(inputString, selectionStart);
+            }
+            else{
+                console.log("inputString=" + inputString + " stateInputValue=" + stateInputValue);
+                //restoreInputToPreviousState(inputString, selectionStart);
+
+
+
+                //Возвращаем содержимое input до ввода пользователя
+              //  const pastedLength = inputString.length - stateInputValue.length;
+              //  setInputValueAndCursor(stateInputValue, selectionStart-pastedLength);
+
+
+
+
+                console.log(inputWarningsList);
+                // inputBlockingChecks(stateInputValue);
+            }
+
+
+
+
+        //}
+        
+        // else {
+        //     console.log("isStringConsistOfAllowableCharacters false");
+        //     restoreInputToPreviousState(inputString, selectionStart);
+
+        //     inputBlockingChecks(stateInputValue);
+        // }
     }
     function handleChange(){
         inputBlockingChecksAndFormatting();
