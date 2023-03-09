@@ -2,7 +2,7 @@ import Box from '@mui/material/Box';
 import { useStyles } from './styles';
 
 import { useState, useRef} from 'react';
-import { inputErrors, maxCharactersInIntegerPartOfInput } from '../../../data/constants/constants';
+import { inputErrors, maxCharactersInIntegerPartOfInput, maxCharactersInFractionalPartOfInput } from '../../../data/constants/constants';
 
 const AmountInput = ({variant}) => {
     const classEnum = {
@@ -11,12 +11,14 @@ const AmountInput = ({variant}) => {
     const [stateInputValue, setStateInputValue] = useState('');
 
     const [isInputValid, setIsInputValid] = useState(true);
+
     const warnings = inputErrors.warnings;
     const [inputWarningsList, setInputWarningsList] = useState([]);
     let draftInputWarningsList;
 
-    // const [inputErrorsList, setInputErrorsList] = useState([]);
-    //const errors = inputErrors.errors;
+    const errors = inputErrors.errors;
+    const [inputErrorsList, setInputErrorsList] = useState([]);
+    let draftInputErrorsList;
     
     const classes = useStyles();
 
@@ -93,8 +95,8 @@ const AmountInput = ({variant}) => {
     function isStringConsistOfAllowableCharacters(inputString){
         return inputString.match(/^[0-9\.\s]*$/) !== null;
     }
-    function warningListStateToDraft(){
-        draftInputWarningsList = [...inputWarningsList];
+    function draftInputWarningsListReset(){
+        draftInputWarningsList = [];
     }
     function warningListDraftToState(){
         setInputWarningsList([...draftInputWarningsList]);
@@ -104,15 +106,29 @@ const AmountInput = ({variant}) => {
             draftInputWarningsList.push(warning);
         }
     }
-    function removeWarningFromList(warning){
-        const indexOfWarning = draftInputWarningsList.indexOf(warning);
-        if(indexOfWarning > -1){
-            draftInputWarningsList.splice(indexOfWarning, 1);
+
+    function errorsListStateToDraft(){
+        draftInputErrorsList = [...inputErrorsList];
+    }
+    function errorsListDraftToState(){
+        setInputErrorsList([...draftInputErrorsList]);
+    }
+    function addErrorToList(error){
+        if(!draftInputErrorsList.includes(error)){
+            draftInputErrorsList.push(error);
         }
     }
+    function removeErrorFromList(error){
+        const indexOfError = draftInputErrorsList.indexOf(error);
+        if(indexOfError > -1){
+            draftInputErrorsList.splice(indexOfError, 1);
+        }
+    }
+
+
+
     function onlyOneDotCheck(inputString){
         if(inputString.match(/^.*\..*\..*$/) === null){
-            removeWarningFromList(warnings.triedInputMoreThenOneDot);
             return true;
         }else{
             addWarningToList(warnings.triedInputMoreThenOneDot);
@@ -122,42 +138,40 @@ const AmountInput = ({variant}) => {
     function maxNumberOfIntegerAndFractionalPartsCheck(inputString){
         const noSpacesString =  inputString.split(/\s+/).join('');
         let integerPart;
-        if(noSpacesString.indexOf('.')> -1){
-            console.log("maxNumberOfIntegerAndFractionalPartsCheck: has dot");
-            integerPart = (noSpacesString.match(/[^.]*\./)[0]).slice(0, -1);
-            console.log("integerPart dot=" + integerPart);
-        }else{
-            console.log("maxNumberOfIntegerAndFractionalPartsCheck: has no dot");
-            integerPart = noSpacesString;
-            console.log("integerPart no dot=" + integerPart);
-        }
-        // console.log("integerPart=" + integerPart);
+        let fractionalPart;
+
+
+        [integerPart, fractionalPart] = noSpacesString.split('.');
+        console.log("integerPart=" + integerPart + " fractionalPart=");
+
+
+
+        // if(noSpacesString.indexOf('.')> -1){
+            
+            
+        // }else{
+        //     integerPart = noSpacesString;
+        // }
         if(integerPart.length > maxCharactersInIntegerPartOfInput){
             addWarningToList(warnings.triedTooManyCharactersIntegerPart);
             return false;
-        }else{
-            removeWarningFromList(warnings.triedTooManyCharactersIntegerPart);
-            return true;
         }
+        if(fractionalPart && fractionalPart.length > maxCharactersInFractionalPartOfInput){
+            addWarningToList(warnings.triedTooManyCharactersFractionalPart);
+            return false;
+        }
+        return true;
     }
     function inputBlockingChecks(inputString){
-        warningListStateToDraft();
-        //const result = onlyOneDotCheck(inputString) & maxNumberOfIntegerAndFractionalPartsCheck(inputString);
-        
-        console.log("draftInputWarningsList 0=" + draftInputWarningsList);
-        const res1 = onlyOneDotCheck(inputString);
-        console.log("res1=" + res1);
-        console.log("draftInputWarningsList 1=" + draftInputWarningsList);
-        const res2 = maxNumberOfIntegerAndFractionalPartsCheck(inputString);
-        console.log("res2=" + res2);
-        console.log("draftInputWarningsList 2=" + draftInputWarningsList);
-        
-
-        
-        
+        let result = false;
+        draftInputWarningsListReset();
+        if(onlyOneDotCheck(inputString)){
+            if(maxNumberOfIntegerAndFractionalPartsCheck(inputString)){
+                result = true;
+            }
+        }
         warningListDraftToState();
-        return res1 & res2;
-        //    return result;
+        return result;
     }
     function restoreInputToPreviousState(inputString, selectionStart){
         const pastedLength = inputString.length - stateInputValue.length;
@@ -167,35 +181,14 @@ const AmountInput = ({variant}) => {
         const inputString = inputRef.current.value;
         const selectionStart = inputRef.current.selectionStart;
         if(isStringConsistOfAllowableCharacters(inputString)){
-
-
-
-
-            console.log("isStringConsistOfAllowableCharacters true");
-
-            const test = inputBlockingChecks(inputString);
-            console.log("test=" + test);
-            if(test){
+            if(inputBlockingChecks(inputString)){
                 spaceFormatting(inputString, selectionStart);
             }
             else{
-                console.log("inputString=" + inputString + " stateInputValue=" + stateInputValue);
                 restoreInputToPreviousState(inputString, selectionStart);
-
-                console.log("draftInputWarningsList=" + draftInputWarningsList);
-                console.log("inputWarningsList=" + inputWarningsList);
-                // inputBlockingChecks(stateInputValue);
             }
-
-
-
-
-
-
         } else{
-            console.log("isStringConsistOfAllowableCharacters false");
             restoreInputToPreviousState(inputString, selectionStart);
-
             inputBlockingChecks(stateInputValue);
         }
     }

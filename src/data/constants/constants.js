@@ -89,7 +89,7 @@ export const inputErrors = {
     warnings: {
         triedInputMoreThenOneDot : "You are tried to enter a dot, but the dot was already in the entered value",
         triedTooManyCharactersIntegerPart : "You tried to enter too many characters in an integer part",
-        triedTooManyCharactersFractionalPart : "You tried to enter too many characters in an integer part",
+        triedTooManyCharactersFractionalPart : "You tried to enter too many characters in an fractional part",
     },
     errors: {
         noIntegerPart : "Enter the integer part of the value",
@@ -97,4 +97,5 @@ export const inputErrors = {
     }
 
 };
-export const maxCharactersInIntegerPartOfInput = 4;
+export const maxCharactersInIntegerPartOfInput = 10;
+export const maxCharactersInFractionalPartOfInput = 5;
