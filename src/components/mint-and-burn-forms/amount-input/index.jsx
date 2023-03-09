@@ -9,22 +9,12 @@ const AmountInput = ({variant}) => {
         INVALID : 'invalid',
     };
     const [stateInputValue, setStateInputValue] = useState('');
-    
-    
-
 
     const [isInputValid, setIsInputValid] = useState(true);
     const warnings = inputErrors.warnings;
     const [inputWarningsList, setInputWarningsList] = useState([]);
     let draftInputWarningsList;
-    // let inputWarningsList = [];
-    // function setInputWarningsList(newInputWarningsList){
-    //     inputWarningsList = [...newInputWarningsList];
-    // }
 
-
-
-    
     // const [inputErrorsList, setInputErrorsList] = useState([]);
     //const errors = inputErrors.errors;
     
@@ -152,65 +142,9 @@ const AmountInput = ({variant}) => {
     }
     function inputBlockingChecks(inputString){
         warningListStateToDraft();
-        // const result = onlyOneDotCheck(inputString) & maxNumberOfIntegerAndFractionalPartsCheck(inputString);
-        
-        
-        
-        //const res1 = onlyOneDotCheck(inputString);
-        let res1;
-        if(inputString.match(/^.*\..*\..*$/) === null){
-            removeWarningFromList(warnings.triedInputMoreThenOneDot);
-            res1= true;
-        }else{
-            addWarningToList(warnings.triedInputMoreThenOneDot);
-            res1= false;
-        }
-        
-        
-        console.log("onlyOneDotCheck=" + res1);
-        
-        
-        
-        
-
-        
-        
-        
-        
-        
-        //const res2 = maxNumberOfIntegerAndFractionalPartsCheck(inputString);
-        let res2;
-        const noSpacesString =  inputString.split(/\s+/).join('');
-        let integerPart;
-        if(noSpacesString.indexOf('.')> -1){
-            console.log("maxNumberOfIntegerAndFractionalPartsCheck: has dot");
-            integerPart = (noSpacesString.match(/[^.]*\./)[0]).slice(0, -1);
-            console.log("integerPart dot=" + integerPart);
-        }else{
-            console.log("maxNumberOfIntegerAndFractionalPartsCheck: has no dot");
-            integerPart = noSpacesString;
-            console.log("integerPart no dot=" + integerPart);
-        }
-        // console.log("integerPart=" + integerPart);
-        if(integerPart.length > maxCharactersInIntegerPartOfInput){
-            addWarningToList(warnings.triedTooManyCharactersIntegerPart);
-            res2= false;
-        }else{
-            removeWarningFromList(warnings.triedTooManyCharactersIntegerPart);
-            res2= true;
-        }
-
-
-
-        console.log("maxNumberOfIntegerAndFractionalPartsCheck=" + res2);
-        
-        
-        
-        
-        
-        
+        const result = onlyOneDotCheck(inputString) & maxNumberOfIntegerAndFractionalPartsCheck(inputString);
         warningListDraftToState();
-        return res1 & res2;
+        return result;
     }
     function restoreInputToPreviousState(inputString, selectionStart){
         const pastedLength = inputString.length - stateInputValue.length;
@@ -219,8 +153,8 @@ const AmountInput = ({variant}) => {
     function inputBlockingChecksAndFormatting(){
         const inputString = inputRef.current.value;
         const selectionStart = inputRef.current.selectionStart;
-        //if(isStringConsistOfAllowableCharacters(inputString)){
-        //    console.log("isStringConsistOfAllowableCharacters true");
+        if(isStringConsistOfAllowableCharacters(inputString)){
+            console.log("isStringConsistOfAllowableCharacters true");
 
 
             //inputBlockingChecks(inputString);
@@ -232,32 +166,17 @@ const AmountInput = ({variant}) => {
             }
             else{
                 console.log("inputString=" + inputString + " stateInputValue=" + stateInputValue);
-                //restoreInputToPreviousState(inputString, selectionStart);
-
-
-
-                //Возвращаем содержимое input до ввода пользователя
-              //  const pastedLength = inputString.length - stateInputValue.length;
-              //  setInputValueAndCursor(stateInputValue, selectionStart-pastedLength);
-
-
-
+                restoreInputToPreviousState(inputString, selectionStart);
 
                 console.log(inputWarningsList);
                 // inputBlockingChecks(stateInputValue);
             }
+        } else{
+            console.log("isStringConsistOfAllowableCharacters false");
+            restoreInputToPreviousState(inputString, selectionStart);
 
-
-
-
-        //}
-        
-        // else {
-        //     console.log("isStringConsistOfAllowableCharacters false");
-        //     restoreInputToPreviousState(inputString, selectionStart);
-
-        //     inputBlockingChecks(stateInputValue);
-        // }
+            inputBlockingChecks(stateInputValue);
+        }
     }
     function handleChange(){
         inputBlockingChecksAndFormatting();
