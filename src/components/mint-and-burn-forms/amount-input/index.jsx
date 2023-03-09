@@ -207,6 +207,10 @@ const AmountInput = ({variant}) => {
             spaceFormatting(inputString, selectionStart);                
             if(inputNoBlockingChecks(noSpacesString)){
                 //TODO: проверки связанные с числовым значением содержимого строки (мин макс есть ли в кошельке)
+                setIsInputValid(true);
+            }
+            else{
+                setIsInputValid(false);
             }
         }
     }

@@ -47,7 +47,7 @@ export const useStyles = makeStyles({
             },
 
             '&.invalid input':{
-                border: '0.125rem solid red',
+                border: '0.125rem solid var(--input-error-color)',
             },
 
             '& .max-amount-container':{
