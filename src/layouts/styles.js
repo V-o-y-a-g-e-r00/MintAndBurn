@@ -23,6 +23,10 @@ export const useStyles = makeStyles({
     '--input-border-color-1': '#DCB9FF',
     '--input-border-color-2': 'rgba(255, 182, 115, 1)',
 
+    '--input-error-font-size':'1rem',
+    '--input-error-color': '#FF0000',
+    '--input-warning-color': '#FFFF00',
+
     '--last-orders-container-header-font-size': '2.6875rem',
     '--last-orders-container-header-weight': '700',
 

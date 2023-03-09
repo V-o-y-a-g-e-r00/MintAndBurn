@@ -225,12 +225,12 @@ const AmountInput = ({variant}) => {
                 Min amount: 0
             </Box>
             <Box className={classes.WarningsAndErrorsContainer}>
-                <Box>
+                <Box className='warnings-list'>
                     {inputWarningsList.map((item, index) => (
                         <div key={index}>{item}</div>
                     ))}
                 </Box>
-                <Box>
+                <Box className='errors-list'>
                     {inputErrorsList.map((item, index) => (
                         <div key={index}>{item}</div>
                     ))}
