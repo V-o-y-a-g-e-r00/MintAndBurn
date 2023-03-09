@@ -39,7 +39,7 @@ const Wallets = ({ openModal, onWalletConnect}) => {
         </Box>
     ) : (
         <>
-            <SnetButton name="Connect Wallets" onClick={openWalletConnector} />
+            {/* <SnetButton name="Connect Wallets" onClick={openWalletConnector} /> */}
             <MintandburnButtonSmall name="Connect Wallets" onClick={openWalletConnector}></MintandburnButtonSmall>
         </>
         
