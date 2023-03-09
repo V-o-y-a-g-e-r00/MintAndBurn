@@ -6,26 +6,18 @@ export const useStyles = makeStyles({
         display: 'flex',
         flexDirection: 'column',
         marginBottom: '4.0625rem',
-        
     },
     Header: {
         margin: 'auto',
         marginBottom: '4rem',
+        textAlign: 'center',
         color: 'var(--base-font-color)',
         fontWeight: 'var(--forms-container-header-weight)',
         fontSize: 'var(--forms-container-header-font-size)',
         fontFamily: 'var(--base-font-family)',
     },
     FormsContainer: {
-        //display:'flex',
-        //flexWrap: 'wrap',
-        
-        //gap: 'calc(max(3.125%, 1rem))',
         width:'100%',
-        //justifyContent: 'space-between',
-        // background: 'red',
-
-
         display: 'grid',
         columnGap: '3%',
         rowGap: '2rem',

@@ -2,19 +2,8 @@ import { red } from '@mui/material/colors';
 import { makeStyles } from '@mui/styles';
 
 export const useStyles = makeStyles({
-    test: {
-        display: 'flex',
-        overflow: 'hidden',
-    },
     AmountContainer:{
-        // maxWidth: '100%',
         width: '100%',
-        // overflow: 'hidden',
-        // display: 'flex',
-        // flexDirection: 'column',
-        // flexGrow: '0',
-
-
         '&.variant-1':{
             '& input':{
                 border: '0.125rem solid var(--input-border-color-1)',

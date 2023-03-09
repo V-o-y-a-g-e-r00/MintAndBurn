@@ -211,7 +211,6 @@ const AmountInput = ({variant}) => {
         }
     }
     return (
-        <div className={classes.test}>
         <Box className={[classes.AmountContainer, `variant-${variant}`]}>
             <Box className='right-side-container'>
                 Balance: 0 
@@ -238,7 +237,6 @@ const AmountInput = ({variant}) => {
                 </Box>
             </Box>
         </Box>
-        </div>
     )
 }
 export default AmountInput;

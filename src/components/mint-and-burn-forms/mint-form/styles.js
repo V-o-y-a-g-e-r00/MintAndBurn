@@ -4,15 +4,7 @@ import mintFormBackground from '../../../assets/images/background/mintForm_backg
 
 export const useStyles = makeStyles({
     mintForm: {
-        overflow: 'hidden',
-        // minWidth: '0',
-        // width: '100%',
         height: '46.625rem',
-        // flex: '0 1 49%',
-        // flexGrow: '0',
-        // flexShrink: '0',
-        // flexBasis: '45%',
-
         background: 'blue',
         borderRadius: '2.5rem',
         color: 'var(--base-font-color)',
@@ -24,13 +16,10 @@ export const useStyles = makeStyles({
         fontFamily:'var(--base-font-family)',
         fontWeight: 'var(--base-font-weight)',
 
-
-
         background: `url(${mintFormBackground}), linear-gradient(157.81deg, #7B90DC 5.82%, rgba(206, 67, 255, 0.19) 95.02%)`,
         boxShadow: '0px 11px 32px 1px rgba(145, 135, 255, 0.25)',
         backdropFilter: 'blur(6.5px)',
         
-
         '& .header': {
             // color: 'var(--color)',
             width: '100%',
@@ -39,11 +28,9 @@ export const useStyles = makeStyles({
             display: 'flex',
             alignItems: 'center',
             
-
             '& .icon-holder': {
                 width:'4.0625rem',
                 height: '3.9375rem',
-
                 // border: '1px solid red',
                 flexShrink: '0',
             },
@@ -59,7 +46,6 @@ export const useStyles = makeStyles({
         '& .details-list':{
             // 'margin-bottom': '1.75rem',
 
-
             '& .details-item':{
                 marginBottom:'2.8125rem',
                 display: 'flex',
@@ -71,11 +57,5 @@ export const useStyles = makeStyles({
             },
         }
     }
-
-
-
-
-
-
 
 });
