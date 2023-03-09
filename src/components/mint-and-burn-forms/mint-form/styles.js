@@ -3,23 +3,15 @@ import { makeStyles } from '@mui/styles';
 import mintFormBackground from '../../../assets/images/background/mintForm_background.png';
 
 export const useStyles = makeStyles({
-    testSection: {
-        display: "flex",
-        overflow: "scroll",
-        resize: "both",
-
-        width: "calc(620px + 16.8px)",
-        height: "800px"
-
-    },
-
     mintForm: {
-
-
+        overflow: 'hidden',
+        // minWidth: '0',
         // width: '100%',
         height: '46.625rem',
         // flex: '0 1 49%',
-        flexGrow: '1',
+        // flexGrow: '0',
+        // flexShrink: '0',
+        // flexBasis: '45%',
 
         background: 'blue',
         borderRadius: '2.5rem',

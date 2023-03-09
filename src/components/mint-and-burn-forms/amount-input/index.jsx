@@ -211,6 +211,7 @@ const AmountInput = ({variant}) => {
         }
     }
     return (
+        <div className={classes.test}>
         <Box className={[classes.AmountContainer, `variant-${variant}`]}>
             <Box className='right-side-container'>
                 Balance: 0 
@@ -224,7 +225,7 @@ const AmountInput = ({variant}) => {
             <Box className='right-side-container'>
                 Min amount: 0
             </Box>
-            <Box>
+            <Box className={classes.WarningsAndErrorsContainer}>
                 <Box>
                     {inputWarningsList.map((item, index) => (
                         <div key={index}>{item}</div>
@@ -237,6 +238,7 @@ const AmountInput = ({variant}) => {
                 </Box>
             </Box>
         </Box>
+        </div>
     )
 }
 export default AmountInput;

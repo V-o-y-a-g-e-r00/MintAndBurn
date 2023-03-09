@@ -3,21 +3,13 @@ import { makeStyles } from '@mui/styles';
 import burnFormBackground from '../../../assets/images/background/burnForm_background.png';
 
 export const useStyles = makeStyles({
-    testSection: {
-        display: "flex",
-        overflow: "scroll",
-        resize: "both",
-
-        width: "calc(620px + 16.8px)",
-        height: "800px"
-
-    },
-
     mintForm: {
         // width: '100%',
         height: '46.625rem',
         // flex: '0 1 49%', 
-        flexGrow: '1',
+        // flexGrow: '0',
+        // flexShrink: '0',
+        // flexBasis: '45%',
         
         borderRadius: '2.5rem',
         color: 'var(--base-font-color)',

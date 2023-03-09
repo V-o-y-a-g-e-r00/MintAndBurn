@@ -6,6 +6,7 @@ export const useStyles = makeStyles({
         display: 'flex',
         flexDirection: 'column',
         marginBottom: '4.0625rem',
+        
     },
     Header: {
         margin: 'auto',
@@ -16,12 +17,18 @@ export const useStyles = makeStyles({
         fontFamily: 'var(--base-font-family)',
     },
     FormsContainer: {
-        display:'flex',
-        flexWrap: 'wrap',
-        // gap: '3.125%',
-        gap: 'calc(max(3.125%, 1rem))',
+        //display:'flex',
+        //flexWrap: 'wrap',
+        
+        //gap: 'calc(max(3.125%, 1rem))',
         width:'100%',
-        justifyContent: 'space-between',
+        //justifyContent: 'space-between',
         // background: 'red',
+
+
+        display: 'grid',
+        columnGap: '3%',
+        rowGap: '2rem',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))',
     }
 })
