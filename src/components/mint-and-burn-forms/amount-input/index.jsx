@@ -107,7 +107,7 @@ const AmountInput = ({variant}) => {
     function removeWarningFromList(warning){
         const indexOfWarning = draftInputWarningsList.indexOf(warning);
         if(indexOfWarning > -1){
-            draftInputWarningsList.splice(warning);
+            draftInputWarningsList.splice(indexOfWarning, 1);
         }
     }
     function onlyOneDotCheck(inputString){
@@ -142,9 +142,22 @@ const AmountInput = ({variant}) => {
     }
     function inputBlockingChecks(inputString){
         warningListStateToDraft();
-        const result = onlyOneDotCheck(inputString) & maxNumberOfIntegerAndFractionalPartsCheck(inputString);
+        //const result = onlyOneDotCheck(inputString) & maxNumberOfIntegerAndFractionalPartsCheck(inputString);
+        
+        console.log("draftInputWarningsList 0=" + draftInputWarningsList);
+        const res1 = onlyOneDotCheck(inputString);
+        console.log("res1=" + res1);
+        console.log("draftInputWarningsList 1=" + draftInputWarningsList);
+        const res2 = maxNumberOfIntegerAndFractionalPartsCheck(inputString);
+        console.log("res2=" + res2);
+        console.log("draftInputWarningsList 2=" + draftInputWarningsList);
+        
+
+        
+        
         warningListDraftToState();
-        return result;
+        return res1 & res2;
+        //    return result;
     }
     function restoreInputToPreviousState(inputString, selectionStart){
         const pastedLength = inputString.length - stateInputValue.length;
@@ -154,23 +167,31 @@ const AmountInput = ({variant}) => {
         const inputString = inputRef.current.value;
         const selectionStart = inputRef.current.selectionStart;
         if(isStringConsistOfAllowableCharacters(inputString)){
+
+
+
+
             console.log("isStringConsistOfAllowableCharacters true");
 
-
-            //inputBlockingChecks(inputString);
             const test = inputBlockingChecks(inputString);
             console.log("test=" + test);
             if(test){
-
                 spaceFormatting(inputString, selectionStart);
             }
             else{
                 console.log("inputString=" + inputString + " stateInputValue=" + stateInputValue);
                 restoreInputToPreviousState(inputString, selectionStart);
 
-                console.log(inputWarningsList);
+                console.log("draftInputWarningsList=" + draftInputWarningsList);
+                console.log("inputWarningsList=" + inputWarningsList);
                 // inputBlockingChecks(stateInputValue);
             }
+
+
+
+
+
+
         } else{
             console.log("isStringConsistOfAllowableCharacters false");
             restoreInputToPreviousState(inputString, selectionStart);
