@@ -4,7 +4,7 @@ import mintFormBackground from '../../../assets/images/background/mintForm_backg
 
 export const useStyles = makeStyles({
     mintForm: {
-        height: '46.625rem',
+        // height: '46.625rem',
         background: 'blue',
         borderRadius: '2.5rem',
         color: 'var(--base-font-color)',
@@ -12,7 +12,7 @@ export const useStyles = makeStyles({
         padding: '3.125rem',
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'space-between',
+        //justifyContent: 'space-between',
         fontFamily:'var(--base-font-family)',
         fontWeight: 'var(--base-font-weight)',
 
@@ -23,7 +23,7 @@ export const useStyles = makeStyles({
         '& .header': {
             // color: 'var(--color)',
             width: '100%',
-            // marginBottom: '2.3125rem',
+            marginBottom: '2.3125rem',
 
             display: 'flex',
             alignItems: 'center',
@@ -44,7 +44,7 @@ export const useStyles = makeStyles({
         },
 
         '& .details-list':{
-            // 'margin-bottom': '1.75rem',
+            'margin-bottom': '1.75rem',
 
             '& .details-item':{
                 marginBottom:'2.8125rem',

@@ -64,9 +64,7 @@ export const useStyles = makeStyles({
 
     },
     WarningsAndErrorsContainer:{
-        width: 'calc(100% - 1px)',
-        maxWidth: '100%',
-        overflow: 'hidden',
+        minHeight: '6rem',
         fontSize: 'var(--input-error-font-size)',
 
         '& .warnings-list':{

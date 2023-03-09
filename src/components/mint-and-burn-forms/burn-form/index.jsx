@@ -8,7 +8,7 @@ const BurnForm = () => {
     const classes = useStyles();
     return (
         // <section className={classes.testSection}>
-            <Box className={classes.mintForm}>
+            <Box className={classes.burnForm}>
                 <Box className="header">
                     <Box className="icon-holder">
                     <svg width="65" height="63" viewBox="0 0 65 63" fill="none" xmlns="http://www.w3.org/2000/svg">

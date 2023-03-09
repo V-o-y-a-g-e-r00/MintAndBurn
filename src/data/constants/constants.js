@@ -99,4 +99,4 @@ export const inputErrors = {
 
 };
 export const maxCharactersInIntegerPartOfInput = 10;
-export const maxCharactersInFractionalPartOfInput = 5;
+export const maxCharactersInFractionalPartOfInput = 6;

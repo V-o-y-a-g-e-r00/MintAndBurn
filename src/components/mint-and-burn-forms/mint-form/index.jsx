@@ -20,7 +20,9 @@ const MintForm = () => {
                         Mint Gcoin
                     </Box>
                 </Box>
-                <AmountInput variant='1'></AmountInput>
+                <Box className="amount-input-wrapper">
+                    <AmountInput variant='1'></AmountInput>
+                </Box>
                 <Box className='details-list'>
 
 
