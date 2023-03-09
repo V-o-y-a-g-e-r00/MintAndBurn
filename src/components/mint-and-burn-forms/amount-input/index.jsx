@@ -107,8 +107,8 @@ const AmountInput = ({variant}) => {
         }
     }
 
-    function errorsListStateToDraft(){
-        draftInputErrorsList = [...inputErrorsList];
+    function draftInputErrorsListReset(){
+        draftInputErrorsList = [];
     }
     function errorsListDraftToState(){
         setInputErrorsList([...draftInputErrorsList]);
@@ -116,12 +116,6 @@ const AmountInput = ({variant}) => {
     function addErrorToList(error){
         if(!draftInputErrorsList.includes(error)){
             draftInputErrorsList.push(error);
-        }
-    }
-    function removeErrorFromList(error){
-        const indexOfError = draftInputErrorsList.indexOf(error);
-        if(indexOfError > -1){
-            draftInputErrorsList.splice(indexOfError, 1);
         }
     }
 
@@ -139,19 +133,7 @@ const AmountInput = ({variant}) => {
         const noSpacesString =  inputString.split(/\s+/).join('');
         let integerPart;
         let fractionalPart;
-
-
         [integerPart, fractionalPart] = noSpacesString.split('.');
-        console.log("integerPart=" + integerPart + " fractionalPart=");
-
-
-
-        // if(noSpacesString.indexOf('.')> -1){
-            
-            
-        // }else{
-        //     integerPart = noSpacesString;
-        // }
         if(integerPart.length > maxCharactersInIntegerPartOfInput){
             addWarningToList(warnings.triedTooManyCharactersIntegerPart);
             return false;
@@ -177,12 +159,10 @@ const AmountInput = ({variant}) => {
         const pastedLength = inputString.length - stateInputValue.length;
         setInputValueAndCursor(stateInputValue, selectionStart-pastedLength);
     }
-    function inputBlockingChecksAndFormatting(){
-        const inputString = inputRef.current.value;
-        const selectionStart = inputRef.current.selectionStart;
+    function inputBlockingChecksWithRestore(inputString, selectionStart){
         if(isStringConsistOfAllowableCharacters(inputString)){
             if(inputBlockingChecks(inputString)){
-                spaceFormatting(inputString, selectionStart);
+                return true;
             }
             else{
                 restoreInputToPreviousState(inputString, selectionStart);
@@ -191,10 +171,44 @@ const AmountInput = ({variant}) => {
             restoreInputToPreviousState(inputString, selectionStart);
             inputBlockingChecks(stateInputValue);
         }
+        return false;
+    }
+    function integerAndFractionalPartsExistenceCheck(noSpacesString){
+        let result=true;
+        let integerPart;
+        let fractionalPart;
+        [integerPart, fractionalPart] = noSpacesString.split('.');
+        if(integerPart === "" && fractionalPart !== undefined){
+            addErrorToList(errors.noIntegerPart);
+            result = false;
+        }
+        if(fractionalPart === ""){
+            addErrorToList(errors.noFractionalPart);
+            result = false;
+        }
+        if(integerPart.length > 1 && integerPart.charAt(0) === '0'){
+            addErrorToList(errors.leadingZeros);
+            result = false;
+        }
+        return result;
+    }
+    function inputNoBlockingChecks(noSpacesString){
+        draftInputErrorsListReset();
+        const result = integerAndFractionalPartsExistenceCheck(noSpacesString);
+        errorsListDraftToState();
+        return result;
     }
     function handleChange(){
-        inputBlockingChecksAndFormatting();
-        //TODO: остальные проверки с выводом ошибок в виде сообщений для пользователя
+        const inputString = inputRef.current.value;
+        const selectionStart = inputRef.current.selectionStart;
+        const noSpacesString =  inputString.split(/\s+/).join('');
+
+        if(inputBlockingChecksWithRestore(inputString, selectionStart)){
+            spaceFormatting(inputString, selectionStart);                
+            if(inputNoBlockingChecks(noSpacesString)){
+                //TODO: проверки связанные с числовым значением содержимого строки (мин макс есть ли в кошельке)
+            }
+        }
     }
     return (
         <Box className={[classes.AmountContainer, `variant-${variant}`]}>
@@ -211,9 +225,16 @@ const AmountInput = ({variant}) => {
                 Min amount: 0
             </Box>
             <Box>
-            {inputWarningsList.map((item, index) => (
-                <div key={index}>{item}</div>
-            ))}
+                <Box>
+                    {inputWarningsList.map((item, index) => (
+                        <div key={index}>{item}</div>
+                    ))}
+                </Box>
+                <Box>
+                    {inputErrorsList.map((item, index) => (
+                        <div key={index}>{item}</div>
+                    ))}
+                </Box>
             </Box>
         </Box>
     )
