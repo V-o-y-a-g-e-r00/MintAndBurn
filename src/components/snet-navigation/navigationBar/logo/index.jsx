@@ -4,7 +4,7 @@ import Paths from '../../../../router/paths';
 import MintAndBurnLogo from '../../../../assets/images/logo/MintAndBurn_logo.svg';
 import useNavbarStyles from '../../style';
 
-const VotingLogoBlock = () => {
+const MintAndBurnLogoBlock = () => {
   const classes = useNavbarStyles();
   const navigate = useNavigate();
 
@@ -27,4 +27,4 @@ const VotingLogoBlock = () => {
   );
 };
 
-export default VotingLogoBlock;
+export default MintAndBurnLogoBlock;

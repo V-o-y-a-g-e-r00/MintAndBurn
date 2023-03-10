@@ -35,7 +35,7 @@ const Voting = () => {
                     <CircularProgress color="white"/>
                 </Backdrop>
                 <Helmet>
-                    <title>SingularityNet Voting</title>
+                    <title>Mint or Burn GCoin</title>
                 </Helmet>
                 <GeneralLayout>
                     {/* <Box display="flex" justifyContent="center" alignItems="center">
