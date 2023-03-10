@@ -1,11 +1,20 @@
 import Box from '@mui/material/Box';
 import { useStyles } from './styles';
+import { useState } from 'react';
 
 import MintandburnButton from '../../ui/mintandburn-button';
 import AmountInput from '../amount-input';
 
 const BurnForm = () => {
     const classes = useStyles();
+
+    const [isInputValid, setIsInputValid] = useState(false);
+
+    function onInputValidCallBack(isInputValid){
+        setIsInputValid(isInputValid);
+        console.log("isInputValid=" + isInputValid);
+    }
+
     return (
         // <section className={classes.testSection}>
             <Box className={classes.burnForm}>
@@ -35,7 +44,7 @@ const BurnForm = () => {
                         Burn Gcoin
                     </Box>
                 </Box>
-                <AmountInput variant='2'></AmountInput>
+                <AmountInput variant='2' isInputValidCallBack={onInputValidCallBack}></AmountInput>
                 <Box className='details-list'>
 
 
@@ -77,7 +86,7 @@ const BurnForm = () => {
                 </Box>
                 <Box className='button-component'>
 
-                <MintandburnButton onClick={null} name='Burn' variant='burn' disabled={false} />
+                <MintandburnButton onClick={null} name='Burn' variant='burn' disabled={!isInputValid} />
                 {/* <MintandburnButton onClick={null} name='Mint' variant='burn' disabled={true} /> */}
 
                 </Box>

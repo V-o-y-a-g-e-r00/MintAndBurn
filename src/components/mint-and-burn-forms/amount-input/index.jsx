@@ -4,7 +4,7 @@ import { useStyles } from './styles';
 import { useState, useRef} from 'react';
 import { inputErrors, maxCharactersInIntegerPartOfInput, maxCharactersInFractionalPartOfInput } from '../../../data/constants/constants';
 
-const AmountInput = ({variant}) => {
+const AmountInput = ({variant, isInputValidCallBack}) => {
     const classEnum = {
         INVALID : 'invalid',
     };
@@ -24,6 +24,10 @@ const AmountInput = ({variant}) => {
 
     const inputRef = useRef(null);
 
+    function setIsInputValidWithCallBack(isInputValid){
+        setIsInputValid(isInputValid);
+        isInputValidCallBack(isInputValid);
+    }
     function invalidClass(isInputValid){
         if(!isInputValid){
             return classEnum.INVALID;
@@ -207,10 +211,10 @@ const AmountInput = ({variant}) => {
             spaceFormatting(inputString, selectionStart);                
             if(inputNoBlockingChecks(noSpacesString)){
                 //TODO: проверки связанные с числовым значением содержимого строки (мин макс есть ли в кошельке)
-                setIsInputValid(true);
+                setIsInputValidWithCallBack(true);
             }
             else{
-                setIsInputValid(false);
+                setIsInputValidWithCallBack(false);
             }
         }
     }
