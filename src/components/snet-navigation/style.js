@@ -30,14 +30,21 @@ const useMenubarStyles = makeStyles(() => ({
     }
   },
   header: {
-    height: '70px',
-    lineHeight: '70px',
-    padding: '12px 60px',
+    padding: '1rem 3.75rem',
     boxShadow: '0 2px 3px 0 rgba(0,0,0,0.1)',
-    '@media(max-width: 1280px)': { padding: '9px 10px' }
+    minHeight: '5rem',
+    display: 'flex',
+    justifyContent: 'center',
+    background: 'linear-gradient(180deg, rgba(58, 50, 115, 0.75), rgba(97, 87, 166, 0.75), rgba(123, 112, 200, 0.75), rgba(95, 86, 163, 0.75), rgba(58, 50, 115, 0.75))',
+
+    '@media(max-width: 1280px)': { padding: '9px 10px' },
+
+    
   },
-  cursor: { cursor: 'pointer' },
-  logo: { height: '40px' },
+  logo: {
+    // height: '40px'
+    height: '100%',
+  },
   flex: {
     display: 'flex',
     alignItems: 'center'
