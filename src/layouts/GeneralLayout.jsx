@@ -22,11 +22,11 @@ const GeneralLayout = ({ children }) => {
 
 <div className={classes.BaseStyles}>
       <div className={classes.BackgroundHolder}>
-      <SnetNavigation />
-      <div className={classes.mainContainer}>
-        <div className={classes.wrapper}>{children}</div>
-      </div>
-      <SnetSnackbar/>
+        <SnetNavigation />
+        <div className={classes.mainContainer}>
+          <div className={classes.wrapper}>{children}</div>
+        </div>
+        <SnetSnackbar/>
       </div>
     </div>
 

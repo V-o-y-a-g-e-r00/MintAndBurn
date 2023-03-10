@@ -35,7 +35,7 @@ const useMenubarStyles = makeStyles(() => ({
     minHeight: '5rem',
     display: 'flex',
     justifyContent: 'center',
-    background: 'linear-gradient(180deg, rgba(58, 50, 115, 0.75), rgba(97, 87, 166, 0.75), rgba(123, 112, 200, 0.75), rgba(95, 86, 163, 0.75), rgba(58, 50, 115, 0.75))',
+    background: 'linear-gradient(180deg, rgba(58, 50, 115, 0.75), rgba(97, 87, 166, 0.75), rgba(123, 112, 200, 0.75), rgba(95, 86, 163, 0.75), rgba(58, 50, 115, 0.75)) !important',
 
     '@media(max-width: 1280px)': { padding: '9px 10px' },
 
