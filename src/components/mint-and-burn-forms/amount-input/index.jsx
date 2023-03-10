@@ -133,26 +133,28 @@ const AmountInput = ({variant, isInputValidCallBack}) => {
             return false;
         }
     }
-    function maxNumberOfIntegerAndFractionalPartsCheck(inputString){
+    function maxNumberOfIntegerAndFractionalPartsBlockingCheck(inputString){
         const noSpacesString =  inputString.split(/\s+/).join('');
+        const noSpacesStateInputString = stateInputValue.split(/\s+/).join('');
         let integerPart;
         let fractionalPart;
+        let result = true;
         [integerPart, fractionalPart] = noSpacesString.split('.');
-        if(integerPart.length > maxCharactersInIntegerPartOfInput){
+        if(integerPart.length > maxCharactersInIntegerPartOfInput && noSpacesString.length > noSpacesStateInputString.length){
             addWarningToList(warnings.triedTooManyCharactersIntegerPart);
-            return false;
+            result = false;
         }
-        if(fractionalPart && fractionalPart.length > maxCharactersInFractionalPartOfInput){
+        if(fractionalPart && fractionalPart.length > maxCharactersInFractionalPartOfInput && noSpacesString.length >= noSpacesStateInputString.length){
             addWarningToList(warnings.triedTooManyCharactersFractionalPart);
-            return false;
+            result = false;
         }
-        return true;
+        return result;
     }
     function inputBlockingChecks(inputString){
         let result = false;
         draftInputWarningsListReset();
         if(onlyOneDotCheck(inputString)){
-            if(maxNumberOfIntegerAndFractionalPartsCheck(inputString)){
+            if(maxNumberOfIntegerAndFractionalPartsBlockingCheck(inputString)){
                 result = true;
             }
         }
@@ -177,6 +179,25 @@ const AmountInput = ({variant, isInputValidCallBack}) => {
         }
         return false;
     }
+    function emptyStringCheck(noSpacesString){
+        return noSpacesString ? true : false;
+    }
+    function maxNumberOfIntegerAndFractionalPartsNoBlockingCheck(noSpacesString){
+        // const noSpacesStateInputString = stateInputValue.split(/\s+/).join('');
+        let integerPart;
+        let fractionalPart;
+        let result = true;
+        [integerPart, fractionalPart] = noSpacesString.split('.');
+        if(integerPart.length > maxCharactersInIntegerPartOfInput){
+            addErrorToList(errors.enteredTooManyCharactersIntegerPart);
+            result = false;
+        }
+        if(fractionalPart && fractionalPart.length > maxCharactersInFractionalPartOfInput){
+            addErrorToList(errors.enteredTooManyCharactersFractionalPart);
+            result = false;
+        }
+        return result;
+    }
     function integerAndFractionalPartsExistenceCheck(noSpacesString){
         let result=true;
         let integerPart;
@@ -198,7 +219,7 @@ const AmountInput = ({variant, isInputValidCallBack}) => {
     }
     function inputNoBlockingChecks(noSpacesString){
         draftInputErrorsListReset();
-        const result = integerAndFractionalPartsExistenceCheck(noSpacesString);
+        const result = emptyStringCheck(noSpacesString) & maxNumberOfIntegerAndFractionalPartsNoBlockingCheck(noSpacesString) & integerAndFractionalPartsExistenceCheck(noSpacesString);
         errorsListDraftToState();
         return result;
     }
