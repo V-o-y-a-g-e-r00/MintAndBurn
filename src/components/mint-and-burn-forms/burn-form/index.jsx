@@ -12,7 +12,7 @@ const BurnForm = () => {
 
     function onInputValidCallBack(isInputValid){
         setIsInputValid(isInputValid);
-        console.log("isInputValid=" + isInputValid);
+        // console.log("isInputValid=" + isInputValid);
     }
 
     return (

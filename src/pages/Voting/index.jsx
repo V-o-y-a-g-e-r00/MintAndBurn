@@ -5,7 +5,7 @@ import GeneralLayout from '../../layouts/GeneralLayout';
 import {useStyles} from './styles';
 import {useDispatch, useSelector} from 'react-redux';
 import {getProposals, getPools} from "../../store/slices/event/eventActions";
-import SnetVote from './../../components/snet-vote'
+// import SnetVote from './../../components/snet-vote'
 
 import MintAndBurnForms from '../../components/mint-and-burn-forms/';
 import MintAndBurnLastOrders from '../../components/mint-and-burn-last-orders/';

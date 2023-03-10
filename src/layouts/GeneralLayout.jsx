@@ -1,4 +1,4 @@
-import SnetFooter from '../components/snet-footer';
+// import SnetFooter from '../components/snet-footer';
 import SnetNavigation from '../components/snet-navigation';
 import SnetSnackbar from '../components/ui/snet-snackbar';
 import { useStyles } from './styles';
