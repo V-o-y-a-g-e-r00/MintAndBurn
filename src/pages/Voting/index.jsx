@@ -7,6 +7,9 @@ import {useDispatch, useSelector} from 'react-redux';
 import {getProposals, getPools} from "../../store/slices/event/eventActions";
 import SnetVote from './../../components/snet-vote'
 
+import MintAndBurnForms from '../../components/mint-and-burn-forms/';
+import MintAndBurnLastOrders from '../../components/mint-and-burn-last-orders/';
+
 const Voting = () => {
     // console.log("COMPONENT VOTING PAGE")
     const classes = useStyles();
@@ -35,7 +38,7 @@ const Voting = () => {
                     <title>SingularityNet Voting</title>
                 </Helmet>
                 <GeneralLayout>
-                    <Box display="flex" justifyContent="center" alignItems="center">
+                    {/* <Box display="flex" justifyContent="center" alignItems="center">
                         {
                             !isInitialDataLoaded ?
                                     <div>
@@ -44,7 +47,11 @@ const Voting = () => {
                                     </div> :
                                     <SnetVote />
                         }
-                    </Box>
+                    </Box> */}
+                <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center" width="100%">
+                    <MintAndBurnForms></MintAndBurnForms>
+                    <MintAndBurnLastOrders></MintAndBurnLastOrders>
+                </Box>
                 </GeneralLayout>
             </>
     );

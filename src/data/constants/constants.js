@@ -84,3 +84,19 @@ export const supportedWallets = {
         }
     ]
 };
+
+export const inputErrors = {
+    warnings: {
+        triedInputMoreThenOneDot : "You tried to enter a dot, but the dot was already in the entered value",
+        triedTooManyCharactersIntegerPart : "You tried to enter too many characters in an integer part",
+        triedTooManyCharactersFractionalPart : "You tried to enter too many characters in a fractional part",
+    },
+    errors: {
+        noIntegerPart : "Enter the integer part of the value",
+        noFractionalPart: "Enter the fractional part of the value or remove the dot",
+        leadingZeros: "Remove leading zeros",
+    }
+
+};
+export const maxCharactersInIntegerPartOfInput = 10;
+export const maxCharactersInFractionalPartOfInput = 6;
