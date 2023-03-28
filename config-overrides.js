@@ -16,7 +16,7 @@ module.exports = function override(config, env) {
   config.plugins.push(
     new webpack.ProvidePlugin({
       Buffer: ['buffer', 'Buffer'],
-      process: 'process/browser'
+      process: 'process/browser',
     })
   );
 
